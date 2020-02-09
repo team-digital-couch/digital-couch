@@ -1,0 +1,39 @@
+
+COLORS TO BE USED
+$soft-violet: rgb(210, 190, 244);
+
+$eggshell-white: rgb(255, 253, 234);
+
+$mossy-green: rgb(159, 216, 176);
+
+$pale-cornflower-blue: rgb(176, 204, 232);
+
+$wheat-beige: rgb(237, 217, 180);
+
+FONTS TO BE USED
+(import from google fonts)
+$paragraph-font: 'Open Sans';
+$header-font: 'Lemonada'
+
+
+MIXINS TO BE USED
+@mixin search-images{
+  height: 75px;
+  width: 75px;
+  border: 2px solid black;
+  border-radius: 50%
+}
+
+@mixin profile-images{
+  height: 250px;
+  width: 250px;
+  border: 2px solid black;
+  border-radius: 10%;
+}
+
+@mixin buttons(color, fontColor) {
+  padding: 7px 15px;
+  border-radius: 5px;
+  background-color: color;
+  color: fontColor
+}
