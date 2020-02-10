@@ -10,6 +10,7 @@ const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNote
 
 //controllers
 const timelineController = require('./controllers/timelineController')
+const timelineEventController = require('./controllers/timelineEventController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -68,10 +69,10 @@ app.put('/api/timeline/:id', timelineController.update);
 app.delete('/api/timeline/:id', timelineController.delete);
 
 //timeline events
-app.get('/api/timeline/event')
-app.put('/api/timeline/event/:id');
-app.post('/api/timeline/event');
-app.delete('/api/timeline/event/:id');
+app.get('/api/timeline/event', timelineEventController.read)
+app.put('/api/timeline/event/:id', timelineEventController.update);
+app.post('/api/timeline/event', timelineEventController.create);
+app.delete('/api/timeline/event/:id', timelineEventController.delete);
 
 //provider notes
 app.post('/api/notes', addProviderNotes);

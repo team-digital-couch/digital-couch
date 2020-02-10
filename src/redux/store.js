@@ -3,8 +3,10 @@ import promise from 'redux-promise-middleware';
 import userReducer from './reducers/userReducer';
 import journalReducer from './reducers/journalReducer';
 import providerNotesReducer from './reducers/providersNotesReducer';
+import timelineReducer from './reducers/timelineReducer'
 
 const rootReducer = combineReducers({
+    timelineReducer,
     userReducer,
     journalReducer,
     providerNotesReducer
