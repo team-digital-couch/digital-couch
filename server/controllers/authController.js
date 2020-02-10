@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const register = async (req, res) => {
     const db = req.app.get('db');
-    const { username, password, isprovider } = req.body;
+    const { username, password, is_provider } = req.body;
 
     const existingUser = await db.user.checkForUser(username);
 
@@ -12,13 +12,13 @@ const register = async (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
 
-        const newUser = await db.user.registerUser(username, hash, isprovider);
+        const newUser = await db.user.registerUser(username, hash, is_provider);
         const result = await db.user.createInfoRow(newUser[0].user_id);
 
         req.session.user = {
-            user_id: newUser[0].user_id,
+            userId: newUser[0].user_id,
             username: newUser[0].username,
-            isprovider: newUser[0].isprovider
+            isProvider: newUser[0].is_provider
         }
         res.status(200).json(req.session.user);
     }
@@ -39,9 +39,9 @@ const login = async (req, res) => {
             res.status(403).json({message:'Username or password incorrect, please try again'})
         } else {
             req.session.user = {
-                user_id: existingUser[0].user_id,
+                userId: existingUser[0].user_id,
                 username: existingUser[0].username,
-                isprovider: existingUser[0].isprovider
+                isProvider: existingUser[0].is_provider
             }
             res.status(200).json(req.session.user)
         }

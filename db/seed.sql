@@ -2,7 +2,7 @@ CREATE TABLE users (
 user_id SERIAL PRIMARY KEY,
 username VARCHAR(50),
 hash TEXT,
-isProvider BOOLEAN
+is_provider BOOLEAN
 );
 
 CREATE TABLE user_info (
@@ -52,8 +52,7 @@ id SERIAL PRIMARY KEY,
 timeline_id INTEGER,
 title VARCHAR(255),
 time TIMESTAMP,
-occurred_after TIMESTAMP,
-occurred_before TIMESTAMP,
+is_approximate BOOLEAN,
 content TEXT
 );
 
