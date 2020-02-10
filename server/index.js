@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const session = require('express-session');
+const {getJournal, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
+const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNotes} = require('./controllers/providerNotesController');
 
 
 //controllers
@@ -54,10 +56,10 @@ app.put('/api/connections/:id');
 app.delete('/api/connections/:id');
 
 //journal
-app.post('/api/journal');
-app.get('/api/journal');
-app.put('/api/journal/:id');
-app.delete('/api/journal/:id');
+app.post('/api/journal', addJournal);
+app.get('/api/journal', getJournal);
+app.put('/api/journal/:id', editJournal);
+app.delete('/api/journal/:id', deleteJournal);
 
 //timeline
 app.post('/api/timeline', timelineController.create);
@@ -72,10 +74,10 @@ app.post('/api/timeline/event');
 app.delete('/api/timeline/event/:id');
 
 //provider notes
-app.post('/api/notes');
-app.get('/api/notes');
-app.put('/api/notes/:id');
-app.delete('/api/notes/:id');
+app.post('/api/notes', addProviderNotes);
+app.get('/api/notes', getProviderNotes);
+app.put('/api/notes/:id', editProviderNotes);
+app.delete('/api/notes/:id', deleteProviderNotes);
 
 //listen
 app.listen(SERVER_PORT, () => {
