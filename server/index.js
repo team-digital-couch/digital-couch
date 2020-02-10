@@ -38,9 +38,9 @@ massive(DB_STRING).then(db => {
 ////endpoints
 
 //auth
-app.post('/api/register');
-app.post('/api/login');
-app.get('/api/logout');
+app.post('/auth/register');
+app.post('/auth/login');
+app.get('/auth/logout');
 
 //dashboard
 app.put('/api/info/:id');
