@@ -4,10 +4,12 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const session = require('express-session');
+const {getJournal, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
+const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNotes} = require('./controllers/providerNotesController');
 
 
 //controllers
-
+const timelineController = require('./controllers/timelineController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -54,25 +56,28 @@ app.put('/api/connections/:id');
 app.delete('/api/connections/:id');
 
 //journal
-app.post('/api/journal');
-app.get('/api/journal');
-app.put('/api/journal/:id');
-app.delete('/api/journal/:id');
+app.post('/api/journal', addJournal);
+app.get('/api/journal', getJournal);
+app.put('/api/journal/:id', editJournal);
+app.delete('/api/journal/:id', deleteJournal);
 
 //timeline
-app.post('/api/timeline');
-app.get('/api/timeline');
-app.put('/api/timeline/:id');
+app.post('/api/timeline', timelineController.create);
+app.get('/api/timeline', timelineController.read);
+app.put('/api/timeline/:id', timelineController.update);
+app.delete('/api/timeline/:id', timelineController.delete);
+
+//timeline events
+app.get('/api/timeline/event')
 app.put('/api/timeline/event/:id');
 app.post('/api/timeline/event');
-app.delete('/api/timeline/:id');
 app.delete('/api/timeline/event/:id');
 
 //provider notes
-app.post('/api/notes');
-app.get('/api/notes');
-app.put('/api/notes/:id');
-app.delete('/api/notes/:id');
+app.post('/api/notes', addProviderNotes);
+app.get('/api/notes', getProviderNotes);
+app.put('/api/notes/:id', editProviderNotes);
+app.delete('/api/notes/:id', deleteProviderNotes);
 
 //listen
 app.listen(SERVER_PORT, () => {
