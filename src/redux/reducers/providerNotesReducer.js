@@ -1,4 +1,12 @@
+import Axios from "axios";
+
 //initial state
+
+initialState = {
+    client_id: null,
+    time: '',
+    content: ''
+}
 
 //constants
 
@@ -10,19 +18,31 @@ const DELETE_PROVIDER_NOTES = "DELETE_PROVIDER_NOTES";
 //functions
 
 export const getProviderNotes = () => {
-
+    return{
+        action: GET_PROVIDER_NOTES,
+        payload: axios.get('/api/notes')
+    }
 };
 
 export const addProviderNotes = () => {
-
+    return{
+        action: ADD_PROVIDER_NOTES,
+        payload: axios.post('/api/notes')
+    }
 };
 
-export const editProviderNotes = () => {
-
+export const editProviderNotes = (id) => {
+    return{
+        action: EDIT_PROVIDER_NOTES,
+        payload: axios.put(`/api/notes/${id}`)
+    }
 };
 
-export const deleteProviderNotes = () => {
-
+export const deleteProviderNotes = (id) => {
+    return{
+        action: DELETE_PROVIDER_NOTES,
+        payload: axios.delete(`/api/notes/${id}`)
+    }
 };
 
 //reducers
