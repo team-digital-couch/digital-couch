@@ -12,6 +12,7 @@ const initialState = {
 const REGISTER_USER = 'REGISTER_USER'
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
+const GET_ME = 'GET_ME'
 
 //functions
 export function registerUser(user){
@@ -31,7 +32,14 @@ export function loginUser(user){
 export function logoutUser(){
     return {
         type: LOGOUT_USER,
-        payload: axios.get('/auth/logout')
+        payload: axios.post('/auth/logout')
+    }
+}
+
+export function getMe(){
+    return {
+        type: GET_ME,
+        payload: axios.get('/auth/me')
     }
 }
 
@@ -67,7 +75,14 @@ export default function reducer(state = initialState, action){
                 userId: null,
                 username: '',
                 isProvider: false
-            }    
+            }   
+        case `${GET_ME}_FULFILLED`:
+            return {
+                ...state,
+                userId: payload.data.userId,
+                username: payload.data.username,
+                isProvider: payload.data.isProvider
+            }
         default: return state;
     }
 }

@@ -11,6 +11,7 @@ const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNote
 //controllers
 const timelineController = require('./controllers/timelineController')
 const timelineEventController = require('./controllers/timelineEventController')
+const authController = require('./controllers/authController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -39,9 +40,10 @@ massive(DB_STRING).then(db => {
 ////endpoints
 
 //auth
-app.post('/auth/register');
-app.post('/auth/login');
-app.get('/auth/logout');
+app.post('/auth/register', authController.register);
+app.post('/auth/login', authController.login);
+app.post('/auth/logout', authController.logout);
+app.get('/auth/me',  authController.me);
 
 //dashboard
 app.put('/api/info/:id');
