@@ -54,7 +54,15 @@ export const reducer = (state=initialState, action) => {
             return{
                 ...state
             }
+        case `${GET_PROVIDER_NOTES}_REJECTED`:
+            return{
+                ...state
+            }
         case `${ADD_PROVIDER_NOTES}_FULFILLED`:
+            return{
+                ...state
+            }
+        case `${ADD_PROVIDER_NOTES}_REJECTED`:
             return{
                 ...state
             }
@@ -62,7 +70,15 @@ export const reducer = (state=initialState, action) => {
             return{
                 ...state
             }
+        case `${EDIT_PROVIDER_NOTES}_REJECTED`:
+            return{
+                ...state
+            }
         case `${DELETE_PROVIDER_NOTES}_FULFILLED`:
+            return{
+                ...state
+            }
+        case `${DELETE_PROVIDER_NOTES}_REJECTED`:
             return{
                 ...state
             }

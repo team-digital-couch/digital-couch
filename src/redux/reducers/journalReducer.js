@@ -65,12 +65,24 @@ export const reducer = (state=initialState, action) => {
                 time: payload.data.time,
                 content: payload.data.content
             }
+        case `${GET_JOURNAL}_REJECTED`:
+            return{
+                ...state
+            }
         case `${GET_JOURNALS}_FULFILLED`:
             return{
                 ...state,
                 journals: payload.data
             }
+        case ` ${GET_JOURNALS}_REJECTED`:
+            return{
+                ...state
+            }
         case `${ADD_JOURNAL}_FULFILLED`:
+            return{
+                ...state
+            }
+        case `${ADD_JOURNAL}_REJECTED`:
             return{
                 ...state
             }
@@ -78,7 +90,15 @@ export const reducer = (state=initialState, action) => {
             return{
                 ...state
             }
+        case `${EDIT_JOURNAL}_REJECTED`:
+            return{
+                ...state
+            }
         case `${DELETE_JOURNAL}_FULFILLED`:
+            return{
+                ...state
+            }
+        case `${DELETE_JOURNAL}_REJECTED`:
             return{
                 ...state
             }
