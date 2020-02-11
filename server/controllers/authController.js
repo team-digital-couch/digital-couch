@@ -1,8 +1,8 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
     const db = req.app.get('db');
-    const { username, password, is_provider } = req.body;
+    const { username, password, isProvider, email } = req.body;
 
     const existingUser = await db.user.checkForUser(username);
 
@@ -12,12 +12,13 @@ const register = async (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
 
-        const newUser = await db.user.registerUser(username, hash, is_provider);
-        const result = await db.user.createInfoRow(newUser[0].user_id);
+        const newUser = await db.user.registerUser(username, hash, isProvider);
+        const result = await db.user.createInfoRow(newUser[0].user_id, email);
 
         req.session.user = {
             userId: newUser[0].user_id,
             username: newUser[0].username,
+            email,
             isProvider: newUser[0].is_provider
         }
         res.status(200).json(req.session.user);
@@ -38,9 +39,11 @@ const login = async (req, res) => {
         if(!authUser){
             res.status(403).json({message:'Username or password incorrect, please try again'})
         } else {
+            const userInfo = await db.user.getUserInfo(existingUser[0].user_id)
             req.session.user = {
                 userId: existingUser[0].user_id,
                 username: existingUser[0].username,
+                email: userInfo[0].email,
                 isProvider: existingUser[0].is_provider
             }
             res.status(200).json(req.session.user)
@@ -53,8 +56,13 @@ const logout = (req, res) => {
     res.status(200).json({message:'Logout successful'})
 }
 
+const me = (req, res) => {
+    res.status(200).json(req.session.user)
+}
+
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    me
 }

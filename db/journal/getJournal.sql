@@ -1,1 +1,2 @@
-SELECT * FROM journal;
+SELECT * FROM journal
+WHERE id = $1;
