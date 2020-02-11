@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getTimelines, getEvents} from '../redux/reducers/timelineReducer'
+import TimelineEvent from './TimelineEvent'
 
 class Timeline extends Component {
     constructor() {
@@ -46,7 +47,7 @@ class Timeline extends Component {
                     <div className='hi'>
                         <h1>{this.props.timelines[this.state.selection].name}</h1>
                         <span>{this.props.timelines[this.state.selection].startDate}</span>
-                        {/* <TimelineEvent /> */}
+                        <TimelineEvent />
                         <span>{this.props.timelines[this.state.selection].endDate}</span>
                     </div>
                 ) : null}
