@@ -1,6 +1,4 @@
-INSERT INTO user_info (
-    user_id
-)
-VALUES (
-    $1
-);
+INSERT INTO user_info
+(user_id, email)
+VALUES
+($1, $2);
