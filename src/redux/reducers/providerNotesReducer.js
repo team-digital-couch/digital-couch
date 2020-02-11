@@ -2,7 +2,7 @@ import Axios from "axios";
 
 //initial state
 
-initialState = {
+const initialState = {
     client_id: null,
     time: '',
     content: ''
@@ -47,7 +47,7 @@ export const deleteProviderNotes = (id) => {
 
 //reducers
 
-export const reducer = (state=initialState, action) => {
+export default function reducer(state=initialState, action){
     const {type, payload} = action;
     switch(type){
         case `${GET_PROVIDER_NOTES}_FULFILLED`:

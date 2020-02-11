@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //initial state
 
-initialState = {
+const initialState = {
     user_id: null,
     journals: [],
     time: '',
@@ -57,7 +57,7 @@ export const deleteJournal = (id) => {
 
 //reducers
 
-export const reducer = (state=initialState, action) => {
+export default function reducer(state=initialState, action){
     const {type, payload} = action;
     switch(type){
         case `${GET_JOURNAL}_FULFILLED`:
