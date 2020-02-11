@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //initial state
 
-initialState = {
+const initialState = {
     user_id: null,
     journals: [],
     time: '',
@@ -33,17 +33,18 @@ export const getJournals = (id) => {
     }
 }
 
-export const addJournal = () => {
+export const addJournal = (journal) => {
     return{
         type: ADD_JOURNAL,
-        payload: axios.post('/api/journal')
+        payload: axios.post('/api/journal', journal)
+        //journal will be an object that contains user_id, time, & content
     }
 };
 
-export const editJournal = (id) => {
+export const editJournal = (id, journal) => {
     return{
         type: EDIT_JOURNAL,
-        payload: axios.put(`/api/journal/${id}`)
+        payload: axios.put(`/api/journal/${id}`, journal)
     }
 };
 
@@ -56,7 +57,7 @@ export const deleteJournal = (id) => {
 
 //reducers
 
-export const reducer = (state=initialState, action) => {
+export default function reducer(state=initialState, action){
     const {type, payload} = action;
     switch(type){
         case `${GET_JOURNAL}_FULFILLED`:
