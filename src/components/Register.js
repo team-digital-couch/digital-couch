@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { registerUser } from '../redux/reducers/userReducer';
 
 class Register extends Component {
@@ -46,4 +47,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default connect(undefined, {registerUser})(Register)

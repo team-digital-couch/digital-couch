@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/reducers/userReducer';
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
                  
         }
