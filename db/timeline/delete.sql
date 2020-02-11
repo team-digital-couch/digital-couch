@@ -1,3 +1,6 @@
+DELETE FROM timeline_event
+WHERE timeline_id = $1;
+
 DELETE FROM timeline
 WHERE id = $1;
 

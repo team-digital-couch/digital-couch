@@ -1,3 +1,9 @@
+function sortEvents(events) {
+    events.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date)
+    })
+}
+
 module.exports = {
     create: async (req, res) => {
         const db = req.app.get('db')
@@ -17,7 +23,9 @@ module.exports = {
         
         try {
             const events = await db.timelineEvent.read()
-            res.status(200).json(events)
+            const sortedEvents = sortEvents(events)
+
+            res.status(200).json(sortedEvents)
         } catch(err) {
             console.log('Read timeline event', err)
             res.status(500).json({message: 'Could not get timeline events'})
