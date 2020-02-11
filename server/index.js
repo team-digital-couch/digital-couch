@@ -4,11 +4,10 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const session = require('express-session');
-const {getJournal, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
-const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNotes} = require('./controllers/providerNotesController');
-
 
 //controllers
+const {getJournal, getJournals, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
+const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNotes} = require('./controllers/providerNotesController');
 const timelineController = require('./controllers/timelineController')
 const timelineEventController = require('./controllers/timelineEventController')
 const authController = require('./controllers/authController')
@@ -60,7 +59,8 @@ app.delete('/api/connections/:id');
 
 //journal
 app.post('/api/journal', addJournal);
-app.get('/api/journal', getJournal);
+app.get('/api/journal', getJournals);
+app.get('/api/journal/:id', getJournal);
 app.put('/api/journal/:id', editJournal);
 app.delete('/api/journal/:id', deleteJournal);
 

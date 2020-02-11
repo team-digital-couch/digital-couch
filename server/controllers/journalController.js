@@ -1,8 +1,15 @@
 module.exports = {
+    getJournals: async (req, res) => {
+        const db = req.app.get('db');
+        const journals = await db.journal.getJournals();
+        res.status(200).json(journals);
+    },
+
     getJournal: async (req, res) => {
         const db = req.app.get('db');
-        const journals = await db.journal.getJournal();
-        res.status(200).json(journals);
+        const {id} = req.params;
+        const journal = await db.journal.getJournal(id);
+        res.status(200).json(journal);
     },
 
     addJournal: async (req, res) => {
