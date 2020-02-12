@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-                 
-        }
-    }
-
     render() {
         return (
             <div>
-                
+                <Link to='/dashboard'><div>Home</div></Link>
+                <Link to='/journal'><div>Journal</div></Link>
+                <Link to='/timeline'><div>Timeline</div></Link>
             </div>
         )
     }
