@@ -19,14 +19,14 @@ const DELETE_JOURNAL = "DELETE_JOURNAL";
 
 //functions
 
-export const getJournal = () => {
+export const getJournals = () => {
     return{
         type: GET_JOURNAL,
         payload: axios.get('/api/journal')
     }
 };
 
-export const getJournals = (id) => {
+export const getJournal = (id) => {
     return{
         type: GET_JOURNALS,
         payload: axios.get(`/api/journal${id}`)

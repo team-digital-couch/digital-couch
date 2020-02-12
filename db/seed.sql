@@ -36,7 +36,8 @@ CREATE TABLE journal (
 id SERIAL PRIMARY KEY,
 user_id INTEGER,
 time TIMESTAMP,
-content TEXT
+content TEXT,
+title VARCHAR(40)
 );
 
 CREATE TABLE timeline (
