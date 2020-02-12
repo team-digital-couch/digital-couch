@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerUser } from '../redux/reducers/userReducer';
+import { registerUser } from '../../redux/reducers/userReducer';
 
 class Register extends Component {
     constructor() {
