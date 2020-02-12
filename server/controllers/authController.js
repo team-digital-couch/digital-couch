@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const register = async (req, res) => {
     const db = req.app.get('db');
     const { username, password, isProvider, email } = req.body;
+    const defaultAvatar = 'https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png'
 
     const existingUser = await db.user.checkForUser(username);
 
@@ -13,13 +14,14 @@ const register = async (req, res) => {
         const hash = bcrypt.hashSync(password, salt);
 
         const newUser = await db.user.registerUser(username, hash, isProvider);
-        const result = await db.user.createInfoRow(newUser[0].user_id, email);
+        const result = await db.user.createInfoRow(newUser[0].user_id, email, defaultAvatar);
 
         req.session.user = {
             userId: newUser[0].user_id,
             username: newUser[0].username,
             email,
-            isProvider: newUser[0].is_provider
+            isProvider: newUser[0].is_provider,
+            avatar: defaultAvatar
         }
         res.status(200).json(req.session.user);
     }
@@ -44,7 +46,8 @@ const login = async (req, res) => {
                 userId: existingUser[0].user_id,
                 username: existingUser[0].username,
                 email: userInfo[0].email,
-                isProvider: existingUser[0].is_provider
+                isProvider: existingUser[0].is_provider,
+                avatar: userInfo[0].avatar
             }
             res.status(200).json(req.session.user)
         }
