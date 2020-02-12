@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 //initial state
 const initialState = {
     userId: null,
     username: '',
     isProvider: false,
-    error: ''
+    avatar: ''
 }
 
 //const strings
@@ -53,35 +54,37 @@ export default function reducer(state = initialState, action){
                 userId: payload.data.userId,
                 username: payload.data.username,
                 isProvider: payload.data.isProvider,
-                error: ''
+                avatar: payload.data.avatar
             }
-        case `${LOGIN_USER}_REJECTED`:    
+        case `${LOGIN_USER}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
         case `${REGISTER_USER}_REJECTED`:
-            return {
-                ...state,
-                error: payload.response.data.message
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${LOGIN_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.userId,
                 username: payload.data.username,
                 isProvider: payload.data.isProvider,
-                error: ''
+                avatar: payload.data.avatar
             }
         case `${LOGOUT_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: null,
                 username: '',
-                isProvider: false
+                isProvider: false,
+                avatar: ''
             }   
         case `${GET_ME}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.userId,
                 username: payload.data.username,
-                isProvider: payload.data.isProvider
+                isProvider: payload.data.isProvider,
+                avatar: payload.data.avatar
             }
         default: return state;
     }
