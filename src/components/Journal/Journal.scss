@@ -27,6 +27,18 @@ $header-font: 'Lemonada';
     font-weight: bold;
 }
 
+#journal_display{
+    border: 5px solid black;
+    background-color: $soft-violet;
+    font-family: $paragraph-font;
+}
+
+#journal_title_date{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
 // doesn't work
 // .rbc-day-bc-today{
 //     background-color: $eggshell-white;

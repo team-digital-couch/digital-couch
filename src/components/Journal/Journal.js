@@ -41,12 +41,12 @@ class Journal extends React.Component{
                         onSelectEvent={this.getJournal}
                     />
                 </section>
-                <section>
-                    <div>
+                <section id='journal_display'>
+                    <div id='journal_title_date'>
                         <h1>Title</h1>
                         <h1>Date</h1>
                     </div>
-                    <div>Content</div>
+                    <h2>Content</h2>
                 </section>
             </div>
         )
