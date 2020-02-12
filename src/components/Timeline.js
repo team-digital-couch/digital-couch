@@ -30,6 +30,10 @@ class Timeline extends Component {
         this.setState({showForm: true})
     ]
 
+    edit = () => {}
+
+    delete = () => {}
+
     render() {
         return (
             <div>
@@ -49,6 +53,8 @@ class Timeline extends Component {
                         <span>{this.props.timelines[this.state.selection].startDate}</span>
                         <TimelineEvent />
                         <span>{this.props.timelines[this.state.selection].endDate}</span>
+                        <button>Edit</button>
+                        <button>Delete</button>
                     </div>
                 ) : null}
             </div>
