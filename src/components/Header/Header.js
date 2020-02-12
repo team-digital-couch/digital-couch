@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getMe} from '../../redux/reducers/userReducer'
-import logo from '../../temp_logo.jpg'
+import logo from '../../temp_logo.png'
+import './Header.css'
 
-class NavBar extends Component {
+class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
