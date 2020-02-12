@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {getTimelines, getEvents} from '../redux/reducers/timelineReducer'
+import {getTimelines, getEvents} from '../../redux/reducers/timelineReducer'
 
 class Timeline extends Component {
     constructor() {
