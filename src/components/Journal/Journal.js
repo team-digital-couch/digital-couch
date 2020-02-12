@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./Journal.css";
+import {getJournal, addJournal, editJournal, deleteJournal} from '../../redux/reducers/journalReducer';
 
 const localizer = momentLocalizer(moment);
 
@@ -12,11 +14,15 @@ class Journal extends React.Component{
             events: [
                 {
                   start: new Date(),
-                  end: new Date(moment()),
+                  end: new Date(),
                   title: "Some title"
                 }
               ]
         }
+    }
+
+    componentDidMount(){
+
     }
 
     getJournal = () => {
@@ -26,14 +32,22 @@ class Journal extends React.Component{
     render(){
         return(
             <div>
-                <Calendar
-                    localizer={localizer}
-                    defaultDate={new Date()}
-                    defaultView="month"
-                    events={this.state.events}
-                    onSelectEvent={this.getJournal}
-                    style={{ height: "100vh" }}
-                />
+                <section id='calendar_section'>
+                    <Calendar
+                        localizer={localizer}
+                        defaultDate={new Date()}
+                        defaultView="month"
+                        events={this.state.events}
+                        onSelectEvent={this.getJournal}
+                    />
+                </section>
+                <section id='journal_display'>
+                    <div id='journal_title_date'>
+                        <h1>Title</h1>
+                        <h1>Date</h1>
+                    </div>
+                    <h2>Content</h2>
+                </section>
             </div>
         )
     }

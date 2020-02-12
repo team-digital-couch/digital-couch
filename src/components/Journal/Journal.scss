@@ -1,0 +1,45 @@
+//colors
+$soft-violet: rgb(210, 190, 244);
+$eggshell-white: rgb(255, 253, 234);
+$mossy-green: rgb(159, 216, 176);
+$pale-cornflower-blue: rgb(176, 204, 232);
+$wheat-beige: rgb(237, 217, 180);
+//fonts
+$paragraph-font: 'Open Sans';
+$header-font: 'Lemonada';
+
+#calendar_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $eggshell-white;
+    font-family: $paragraph-font;
+}
+
+.rbc-calendar{
+    height: 60vh !important;
+    width: 80vw !important;
+}
+
+.rbc-event{
+    background-color: $soft-violet;
+    color: black;
+    font-weight: bold;
+}
+
+#journal_display{
+    border: 5px solid black;
+    background-color: $soft-violet;
+    font-family: $paragraph-font;
+}
+
+#journal_title_date{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+// doesn't work
+// .rbc-day-bc-today{
+//     background-color: $eggshell-white;
+// }
