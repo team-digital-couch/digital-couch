@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-<<<<<<< HEAD:src/components/Timeline.js
-import {getTimelines, getEvents} from '../redux/reducers/timelineReducer'
-import TimelineEvent from './TimelineEvent'
-=======
 import {getTimelines, getEvents} from '../../redux/reducers/timelineReducer'
->>>>>>> master:src/components/Timeline/Timeline.js
+import TimelineEvent from '../TimelineEvent/TimelineEvent'
 
 class Timeline extends Component {
     constructor() {
