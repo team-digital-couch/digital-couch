@@ -6,7 +6,6 @@ const initialState = {
     events: [],
     timelineLoading: false,
     eventLoading: false,
-    error: ''
 }
 
 const GET_TIMELINES = 'GET_TIMELINES'
