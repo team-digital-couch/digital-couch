@@ -1,0 +1,40 @@
+#calendar_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fffdea;
+  font-family: "Open Sans";
+}
+
+.rbc-calendar {
+  height: 60vh !important;
+  width: 80vw !important;
+}
+
+.rbc-event {
+  background-color: #d2bef4;
+  color: black;
+  font-weight: bold;
+}
+
+#journal_display {
+  border: 5px solid black;
+  background-color: #d2bef4;
+  font-family: "Open Sans";
+}
+
+#journal_title_date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+/*# sourceMappingURL=Journal.css.map */
