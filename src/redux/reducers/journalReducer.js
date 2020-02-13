@@ -4,7 +4,14 @@ import axios from 'axios';
 
 const initialState = {
     user_id: null,
-    journal: []
+    journal: [6],
+    events: [{
+        start: new Date(),
+        end: new Date(),
+        title: "Blah",
+        id: 1
+      }]
+    // journals: []
 }
 
 //constants
