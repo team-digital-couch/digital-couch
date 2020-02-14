@@ -1,11 +1,12 @@
 module.exports = {
     create: async (req, res) => {
         const db = req.app.get('db')
-        const {clientId, providerId} = req.body
+        // const {clientId, providerId} = req.body
+        const [clientId, providerId] = req.session.user.isProvider ? [req.body.connId, req.session.user.userId] : [req.session.user.userId, req.body.connId]
 
         try {
-            const result = await db.connections.create()
-            res.sendStatus(200)
+            const result = await db.connections.create(providerId, clientId)
+            res.status(200).json({message: 'Connection request sent'})
         } catch(err) {
             console.log('Create connection', err)
             res.status(500).json({message: 'Could not request new connection'})
@@ -30,7 +31,7 @@ module.exports = {
 
         try {
             const result = await db.connection.approve()
-            res.sendStatus(200)
+            res.status(200).json({message: 'Connection request approved'})
         } catch(err) {
             console.log('Approve connection', err)
             res.status(500).json({message: 'Could not approve connection'})
