@@ -39,8 +39,8 @@ class Register extends Component {
         return (
             <div>
                 <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
-                <input type='password' name='Password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
-                <input type='email' name='Email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
+                <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
+                <input type='email' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
                 Are You a Provider?<input type='checkbox' onChange={this.handleBoxClick} checked={this.state.isProvider} />
                 <button onClick={this.registerLocal}>Register</button>
                 <p>Already have an Account? Login <Link to='/'>Here</Link></p>

@@ -6,7 +6,9 @@ const initialState = {
     userId: null,
     username: '',
     isProvider: false,
-    avatar: ''
+    avatar: '',
+    selectedClient: 0,
+    info: {}
 }
 
 //const strings
@@ -14,6 +16,8 @@ const REGISTER_USER = 'REGISTER_USER'
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
 const GET_ME = 'GET_ME'
+const SELECT_CLIENT = 'SELECT_CLIENT'
+const GET_USER_INFO = 'GET_USER_INFO'
 
 //functions
 export function registerUser(user){
@@ -41,6 +45,27 @@ export function getMe(){
     return {
         type: GET_ME,
         payload: axios.get('/auth/me')
+    }
+}
+
+export function selectClient(id = 0){
+    return {
+        type: SELECT_CLIENT,
+        payload: id
+    }
+}
+
+export function getUserInfo(id = 0){
+    if(!id) {
+        return {
+            type: GET_USER_INFO,
+            payload: axios.get('/api/info')
+        }
+    } else {
+        return {
+            type: GET_USER_INFO,
+            payload: axios.get(`/api/info?clientId=${id}`)
+        }
     }
 }
 
@@ -86,6 +111,19 @@ export default function reducer(state = initialState, action){
                 isProvider: payload.data.isProvider,
                 avatar: payload.data.avatar
             }
+        case SELECT_CLIENT:
+            return {
+                ...state,
+                selectedClient: payload
+            }
+        case `${GET_USER_INFO}_FULFILLED`:
+            return {
+                ...state,
+                info: payload.data
+            }
+        case `${GET_USER_INFO}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
         default: return state;
     }
 }
