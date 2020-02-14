@@ -4,14 +4,14 @@ import axios from 'axios';
 
 const initialState = {
     user_id: null,
-    // journal: [6],
-    events: [{
-        start: new Date(),
-        end: new Date(),
-        title: "Blah",
-        id: 1
-      }],
-    // newJournal: {},
+    events: [
+    //     {
+    //     start: new Date(),
+    //     end: new Date(),
+    //     title: "Blah",
+    //     id: 1
+    //   }
+    ],
     journals: []
 }
 
@@ -65,19 +65,20 @@ export const deleteJournal = (id) => {
 export default function reducer(state=initialState, action){
     const {type, payload} = action;
     switch(type){
-        case `${GET_JOURNAL}_FULFILLED`:
-            return{
-                ...state,
-                journal: payload.data
-            }
-        case `${GET_JOURNAL}_REJECTED`:
-            return{
-                ...state
-            }
+        // case `${GET_JOURNAL}_FULFILLED`:
+        //     return{
+        //         ...state,
+        //         journal: payload.data
+        //     }
+        // case `${GET_JOURNAL}_REJECTED`:
+        //     return{
+        //         ...state
+        //     }
         case `${GET_JOURNALS}_FULFILLED`:
             return{
                 ...state,
-                journals: payload.data
+                journals: payload.data,
+                events: payload.data
             }
         case ` ${GET_JOURNALS}_REJECTED`:
             return{

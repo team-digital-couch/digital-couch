@@ -36,11 +36,11 @@ class Journal extends React.Component{
 
     clickJournal = (event) => {
         this.setState({journalId: event.id})
-        console.log(this.state.journalIndex)
+        // console.log(this.state.journalIndex)
       }
 
     render(){
-        // console.log(this.props.journals)
+        console.log(new Date())
         return(
             <div>
                 <section id='calendar_section'>
@@ -66,19 +66,12 @@ class Journal extends React.Component{
                         <section id='journal_display'>
                             <div id='journal_title_date'>
                                 <h1>{map.title}</h1>
-                                <h1>{map.date}</h1>
+                                <h1>{map.start_date}</h1>
                             </div>
                             <h2>{map.content}</h2>
                         </section>
                     )
                 })}
-                {/* <section id='journal_display'>
-                    <div id='journal_title_date'>
-                        <h1>Title</h1>
-                        <h1>Date</h1>
-                    </div>
-                    <h2>Content</h2>
-                </section> */}
             </div>
         )
     }

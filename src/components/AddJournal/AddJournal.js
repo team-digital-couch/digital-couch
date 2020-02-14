@@ -26,8 +26,10 @@ class AddJournal extends React.Component{
         }
 
         const dbEvent = {
+            //need to get user_id off of session
             user_id: 1,
-            time: new Date(),
+            start_date: new Date(),
+            end_date: new Date(),
             content: this.state.content,
             title: this.state.title
         }
