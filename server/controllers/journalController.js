@@ -2,6 +2,14 @@ module.exports = {
     getJournals: async (req, res) => {
         const db = req.app.get('db');
         const journals = await db.journal.getJournals();
+        // const updatedJournals = {
+        //     id: journals.id,
+        //     user_id: journals.user_id,
+        //     start: journals.start_date,
+        //     end: journals.end_date,
+        //     content: journals.content,
+        //     title: journals.title
+        // }
         res.status(200).json(journals);
     },
 

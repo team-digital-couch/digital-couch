@@ -55,7 +55,6 @@ class AddJournal extends React.Component{
 const mapStateToProps = (reduxState) => {
     return{
         events: reduxState.journalReducer.events,
-        newJournal: reduxState.journalReducer.newJournal
     }
 }
 

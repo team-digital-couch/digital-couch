@@ -40,7 +40,7 @@ class Journal extends React.Component{
       }
 
     render(){
-        console.log(new Date())
+        console.log(this.props.events)
         return(
             <div>
                 <section id='calendar_section'>
@@ -53,20 +53,12 @@ class Journal extends React.Component{
                     />
                     <Link to='/addJournal'>Add a new Journal entry</Link>
                 </section>
-                {/* {this.props.journals.id === this.state.journalId? 
-                <section id='journal_display'>
-                    <div id='journal_title_date'>
-                        <h1 id='title'>{this.journals[1].title}</h1>
-                        <h1 id='date'>{this.journals[this.state.journalIndex].title}</h1>
-                    </div>
-                    <h2 id='content'>{this.journals[this.state.journalIndex].title}</h2>
-                </section>:null} */}
                 {this.props.journals.map(map => {
                     return(
                         <section id='journal_display'>
                             <div id='journal_title_date'>
                                 <h1>{map.title}</h1>
-                                <h1>{map.start_date}</h1>
+                                <h1>{map.start}</h1>
                             </div>
                             <h2>{map.content}</h2>
                         </section>
