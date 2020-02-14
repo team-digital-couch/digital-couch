@@ -11,6 +11,7 @@ const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNote
 const timelineController = require('./controllers/timelineController')
 const timelineEventController = require('./controllers/timelineEventController')
 const authController = require('./controllers/authController')
+const userController = require('./controllers/userController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -46,7 +47,7 @@ app.get('/auth/me',  authController.me);
 
 //dashboard
 app.put('/api/info/:id');
-app.get('/api/info');
+app.get('/api/info', userController.read);
 
 //notifications
 app.delete('/api/notifications/:id')
