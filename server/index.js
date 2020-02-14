@@ -12,6 +12,7 @@ const timelineController = require('./controllers/timelineController')
 const timelineEventController = require('./controllers/timelineEventController')
 const authController = require('./controllers/authController')
 const userController = require('./controllers/userController')
+const connectionController = require('./controllers/connectionController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -54,7 +55,7 @@ app.delete('/api/notifications/:id')
 
 //connection
 app.post('/api/connections');
-app.get('/api/connections');
+app.get('/api/connections', connectionController.read);
 app.put('/api/connections/:id');
 app.delete('/api/connections/:id');
 
