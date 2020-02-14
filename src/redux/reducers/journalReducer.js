@@ -4,32 +4,33 @@ import axios from 'axios';
 
 const initialState = {
     user_id: null,
-    journal: [6],
+    // journal: [6],
     events: [{
         start: new Date(),
         end: new Date(),
         title: "Blah",
         id: 1
-      }]
-    // journals: []
+      }],
+    // newJournal: {},
+    journals: []
 }
 
 //constants
 
 const GET_JOURNAL = "GET_JOURNAL";
-// const GET_JOURNALS = "GET_JOURNALS";
+const GET_JOURNALS = "GET_JOURNALS";
 const ADD_JOURNAL = "ADD_JOURNAL";
 const EDIT_JOURNAL = "EDIT_JOURNAL";
 const DELETE_JOURNAL = "DELETE_JOURNAL";
 
 //functions
 
-// export const getJournals = () => {
-//     return{
-//         type: GET_JOURNAL,
-//         payload: axios.get('/api/journal')
-//     }
-// };
+export const getJournals = () => {
+    return{
+        type: GET_JOURNALS,
+        payload: axios.get('/api/journal')
+    }
+};
 
 export const getJournal = (id) => {
     return{
@@ -42,7 +43,6 @@ export const addJournal = (journal) => {
     return{
         type: ADD_JOURNAL,
         payload: axios.post('/api/journal', journal)
-        //journal will be an object that contains user_id, time, & content
     }
 };
 
@@ -74,18 +74,19 @@ export default function reducer(state=initialState, action){
             return{
                 ...state
             }
-        // case `${GET_JOURNALS}_FULFILLED`:
-        //     return{
-        //         ...state,
-        //         journals: payload.data
-        //     }
-        // case ` ${GET_JOURNALS}_REJECTED`:
-        //     return{
-        //         ...state
-        //     }
-        case `${ADD_JOURNAL}_FULFILLED`:
+        case `${GET_JOURNALS}_FULFILLED`:
+            return{
+                ...state,
+                journals: payload.data
+            }
+        case ` ${GET_JOURNALS}_REJECTED`:
             return{
                 ...state
+            }
+        case `${ADD_JOURNAL}_FULFILLED`:
+            return{
+                ...state,
+                journals: payload.data
             }
         case `${ADD_JOURNAL}_REJECTED`:
             return{

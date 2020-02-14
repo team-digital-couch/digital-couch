@@ -14,9 +14,9 @@ module.exports = {
 
     addJournal: async (req, res) => {
         const db = req.app.get('db');
-        const {user_id, time, content} = req.body;
-        const newJournal = await db.journal.addJournal(user_id, time, content);
-        res.status(200).json(newJournal);
+        const {user_id, time, content, title} = req.body;
+        const newJournals = await db.journal.addJournal(user_id, time, content, title);
+        res.status(200).json(newJournals);
     },
 
     editJournal: async (req, res) => {
