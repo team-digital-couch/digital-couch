@@ -54,10 +54,10 @@ app.get('/api/info', userController.read);
 app.delete('/api/notifications/:id')
 
 //connection
-app.post('/api/connections');
+app.post('/api/connections', connectionController.create);
 app.get('/api/connections', connectionController.read);
-app.put('/api/connections/:id');
-app.delete('/api/connections/:id');
+app.put('/api/connections/:id', connectionController.approve);
+app.delete('/api/connections/:id', connectionController.delete);
 
 //journal
 app.post('/api/journal', addJournal);
