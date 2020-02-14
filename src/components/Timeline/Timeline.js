@@ -43,13 +43,14 @@ class Timeline extends Component {
         return (
             <div>
                 <div>
-                    <label htmlFor='timelineSelector'>Please make a selection:</label>
+                    <label htmlFor='timelineSelector'>Timeline:</label>
                     <select name='timelineSelector' value={this.state.selection} onChange={this.handleChange}>
+                        <option value={0} selected>Please make a selection</option>
                         {!this.props.timelineLoading && this.props.timelines.map(v => {
                             return <option key={v.id} value={v.id}>{v.name}</option>
                         })}
                     </select>
-                    <button onClick={this.select}>Select</button>
+                    <button onClick={this.select} disabled={!this.state.selection}>Select</button>
                     <button onClick={this.showForm}>Add a timeline</button>
                 </div>
                 {this.state.showForm && <AddTimeline closeForm={this.closeForm} />}

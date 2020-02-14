@@ -15,7 +15,7 @@ module.exports = {
 
     read: async (req, res) => {
         const db = req.app.get('db')
-        const userId = req.app.query.clientId || req.session.user.id
+        const userId = req.app.query ? req.app.query.clientId : req.session.user ? req.session.user.id : 0
 
         try {
             const timelines = await db.timeline.read(userId)
