@@ -13,6 +13,7 @@ const timelineEventController = require('./controllers/timelineEventController')
 const authController = require('./controllers/authController')
 const userController = require('./controllers/userController')
 const connectionController = require('./controllers/connectionController')
+const searchController = require('./controllers/searchController')
 
 //dotenv
 const { SERVER_PORT, DB_STRING, SESSION_SECRET } = process.env;
@@ -45,6 +46,10 @@ app.post('/auth/register', authController.register);
 app.post('/auth/login', authController.login);
 app.post('/auth/logout', authController.logout);
 app.get('/auth/me',  authController.me);
+
+//user
+app.get('/api/search/name', searchController.searchByName)
+app.get('/api/search/city', searchController.searchByLocation)
 
 //dashboard
 app.put('/api/info/:id');
