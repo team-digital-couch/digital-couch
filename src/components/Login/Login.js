@@ -31,7 +31,7 @@ class Login extends Component {
         return (
             <div>
                 <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
-                <input type='password' name='Password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
+                <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
                 <button onClick={this.loginLocal}>Login</button>
                 <p>Need an Account? Register <Link to='/register'>Here</Link></p>
             </div>
