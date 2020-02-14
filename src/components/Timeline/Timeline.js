@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getTimelines, getEvents} from '../../redux/reducers/timelineReducer'
 import TimelineEvent from '../TimelineEvent/TimelineEvent'
+import AddTimeline from '../AddTimeline/AddTimeline'
 
 class Timeline extends Component {
     constructor() {
@@ -26,9 +27,13 @@ class Timeline extends Component {
         this.props.getEvents(this.state.selection)
     }
 
-    showForm = () => [
+    showForm = () => {
         this.setState({showForm: true})
-    ]
+    }
+
+    closeForm = () => {
+        this.setState({showForm: false})
+    }
 
     edit = () => {}
 
@@ -44,9 +49,10 @@ class Timeline extends Component {
                             return <option key={v.id} value={v.id}>{v.name}</option>
                         })}
                     </select>
-                    <button onClick={this.showForm}>Add a timeline</button>
                     <button onClick={this.select}>Select</button>
+                    <button onClick={this.showForm}>Add a timeline</button>
                 </div>
+                {this.state.showForm && <AddTimeline closeForm={this.closeForm} />}
                 {this.state.selection && !this.props.eventLoading ? (
                     <div className='hi'>
                         <h1>{this.props.timelines[this.state.selection].name}</h1>
