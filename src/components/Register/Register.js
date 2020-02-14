@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { registerUser } from '../../redux/reducers/userReducer';
 
 class Register extends Component {
@@ -42,6 +43,7 @@ class Register extends Component {
                 <input type='email' name='Email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
                 Are You a Provider?<input type='checkbox' onChange={this.handleBoxClick} checked={this.state.isProvider} />
                 <button onClick={this.registerLocal}>Register</button>
+                <p>Already have an Account? Login <Link to='/'>Here</Link></p>
             </div>
         )
     }

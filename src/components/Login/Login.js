@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../redux/reducers/userReducer';
 
 class Login extends Component {
@@ -32,6 +33,7 @@ class Login extends Component {
                 <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
                 <input type='password' name='Password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
                 <button onClick={this.loginLocal}>Login</button>
+                <p>Need an Account? Register <Link to='/register'>Here</Link></p>
             </div>
         )
     }
