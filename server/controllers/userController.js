@@ -3,6 +3,8 @@ module.exports = {
         const db = req.app.get('db')
         const {clientId} = req.query
 
+        console.log(clientId, req.session.user)
+
         if(clientId) {
             try {
                 const clientInfo = await db.user.getClientInfo(clientId)
@@ -14,6 +16,7 @@ module.exports = {
         } else if(req.session.user) {
             try {
                 const userInfo = await db.user.getUserInfo(req.session.user.userId)
+                console.log('here', userInfo)
                 res.status(200).json(userInfo)
             } catch(err) {
                 console.log('Get user info', err)
