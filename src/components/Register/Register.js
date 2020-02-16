@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../../redux/reducers/userReducer';
 
 class Register extends Component {
@@ -11,6 +11,13 @@ class Register extends Component {
             password: '',
             email: '',
             isProvider: false
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.props.userLoading, prevProps.userLoading)
+        if(prevProps.userLoading == true) {
+            this.props.history.push('/dashboard')
         }
     }
 
@@ -42,6 +49,7 @@ class Register extends Component {
                 <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
                 <input type='email' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
                 Are You a Provider?<input type='checkbox' onChange={this.handleBoxClick} checked={this.state.isProvider} />
+                {/* <Link to='/dashboard'><button onClick={this.registerLocal}>Register</button></Link> */}
                 <button onClick={this.registerLocal}>Register</button>
                 <p>Already have an Account? Login <Link to='/'>Here</Link></p>
             </div>
@@ -49,4 +57,9 @@ class Register extends Component {
     }
 }
 
-export default connect(undefined, {registerUser})(Register)
+const checkout = state => ({
+    userId: state.userReducer.userId,
+    userLoading: state.userReducer.userLoading
+})
+
+export default connect(checkout, {registerUser})(withRouter(Register))

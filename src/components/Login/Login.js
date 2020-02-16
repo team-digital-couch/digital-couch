@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { loginUser } from '../../redux/reducers/userReducer';
 
 class Login extends Component {
@@ -9,6 +9,13 @@ class Login extends Component {
         this.state = {
             username: '',
             password: ''
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.props.userLoading, prevProps.userLoading)
+        if(prevProps.userLoading == true) {
+            this.props.history.push('/dashboard')
         }
     }
 
@@ -32,6 +39,7 @@ class Login extends Component {
             <div>
                 <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
                 <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
+                {/* <Link to='/dashboard'><button onClick={this.loginLocal}>Login</button></Link> */}
                 <button onClick={this.loginLocal}>Login</button>
                 <p>Need an Account? Register <Link to='/register'>Here</Link></p>
             </div>
@@ -39,4 +47,9 @@ class Login extends Component {
     }
 }
 
-export default connect(undefined, {loginUser})(Login)
+const checkout = state => ({
+    userId: state.userReducer.userId,
+    userLoading: state.userReducer.userLoading
+})
+
+export default connect(checkout, {loginUser})(withRouter(Login))

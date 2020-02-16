@@ -25,8 +25,8 @@ class Header extends Component {
                 </div>
                 <div className='header-menu-container'>
                     <i className='far fa-bell' />
-                    {/* <img src={this.props.avatar} alt='Avatar' /> */}
-                    <img src='https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png' alt='avatar' />
+                    <img src={this.props.avatar} alt='Avatar' />
+                    {/* <img src='https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png' alt='avatar' /> */}
                 </div>
             </div>
         )
