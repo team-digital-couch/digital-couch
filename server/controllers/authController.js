@@ -49,6 +49,7 @@ const login = async (req, res) => {
                 isProvider: existingUser[0].is_provider,
                 avatar: userInfo[0].avatar
             }
+            console.log(req.session.user)
             res.status(200).json(req.session.user)
         }
     }

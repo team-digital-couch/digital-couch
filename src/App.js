@@ -3,6 +3,7 @@ import './App.css';
 import {ToastContainer, toast} from 'react-toastify'
 import routes from './routes';
 import Header from './components/Header/Header'
+import NavBar from './components/NavBar/NavBar'
 import 'react-toastify/dist/ReactToastify.css'
 import {withRouter} from 'react-router-dom'
 
@@ -19,7 +20,10 @@ function App(props) {
       <ToastContainer />
       {/* <Header /> */}
         {props.location.pathname == '/' || props.location.pathname == '/register' ? null : <Header />}
-        {routes}
+        <div className='main-container'>
+          {props.location.pathname == '/' || props.location.pathname == '/register' ? null : <NavBar />}
+          {routes}
+        </div>
     </div>
   );
 }
