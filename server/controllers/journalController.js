@@ -2,15 +2,16 @@ module.exports = {
     getJournals: async (req, res) => {
         const db = req.app.get('db');
         const journals = await db.journal.getJournals();
-        // const updatedJournals = {
-        //     id: journals.id,
-        //     user_id: journals.user_id,
-        //     start: journals.start_date,
-        //     end: journals.end_date,
-        //     content: journals.content,
-        //     title: journals.title
-        // }
-        res.status(200).json(journals);
+        const updatedJournals = journals.map(journal => ({
+            id: journal.id,
+            user_id: journal.user_id,
+            start: journal.start_date,
+            end: journal.end_date,
+            content: journal.content,
+            title: journal.title
+        }))
+        console.log(journals)
+        res.status(200).json(updatedJournals);
     },
 
     getJournal: async (req, res) => {

@@ -40,7 +40,7 @@ class Journal extends React.Component{
       }
 
     render(){
-        console.log(this.props.events)
+        console.log(this.props.journals)
         return(
             <div>
                 <section id='calendar_section'>
