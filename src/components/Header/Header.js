@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {getMe} from '../../redux/reducers/userReducer'
-import logo from '../../digitalCouchLogo.svg'
+import logo from '../../digital-couch-logo.png'
 import './Header.css'
 
 class Header extends Component {

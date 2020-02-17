@@ -1,4 +1,11 @@
 #addJournal_component {
   z-index: 2;
 }
+
+#addJournal_component button {
+  padding: 7px 15px;
+  border-radius: 20px;
+  background-color: #9fd8b0;
+  color: black;
+}
 /*# sourceMappingURL=AddJournal.css.map */
