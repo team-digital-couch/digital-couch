@@ -13,7 +13,7 @@ class Journal extends React.Component{
     constructor(){
         super()
         this.state = {
-            journalId: 0
+            journalId: 1
         }
     }
 
@@ -36,11 +36,23 @@ class Journal extends React.Component{
 
     clickJournal = (event) => {
         this.setState({journalId: event.id})
-        // console.log(this.state.journalIndex)
+        console.log(this.state.journalId)
       }
 
     render(){
-        console.log(this.props.journals)
+        let journalId = this.state.journalId;
+        let filteredJournal = this.props.journals.filter(journal => journal.id == journalId).map(journal => {
+            return(
+                <section id='journal_display'>
+                    <div id='journal_title_date'>
+                        <h1>{journal.title}</h1>
+                        <h1>{journal.start}</h1>
+                    </div>
+                    <h2>{journal.content}</h2>
+                </section>
+            )
+        });
+        console.log(filteredJournal[0]);
         return(
             <div>
                 <section id='calendar_section'>
@@ -53,7 +65,7 @@ class Journal extends React.Component{
                     />
                     <Link to='/addJournal'>Add a new Journal entry</Link>
                 </section>
-                {this.props.journals.map(map => {
+                {/* {this.props.journals.map(map => {
                     return(
                         <section id='journal_display'>
                             <div id='journal_title_date'>
@@ -63,7 +75,13 @@ class Journal extends React.Component{
                             <h2>{map.content}</h2>
                         </section>
                     )
-                })}
+                })} */}
+                <section id='journal_display'>
+                    <div id='journal_title_date'>
+                        <h1>{filteredJournal[0]}</h1>
+                        {/* <h1>{filteredJournal}</h1> */}
+                    </div>
+                </section>
             </div>
         )
     }

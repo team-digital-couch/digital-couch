@@ -10,7 +10,6 @@ module.exports = {
             content: journal.content,
             title: journal.title
         }))
-        console.log(journals)
         res.status(200).json(updatedJournals);
     },
 
