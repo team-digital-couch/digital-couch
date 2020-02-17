@@ -3,4 +3,4 @@ INSERT INTO timeline_event
 VALUES
 ($1, $2, $3, $4, $5);
 
-SELECT * FROM timeline_event;
+SELECT * FROM timeline_event WHERE timeline_id = $1;

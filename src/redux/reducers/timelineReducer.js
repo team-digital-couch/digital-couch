@@ -31,10 +31,10 @@ export const getTimelines = (clientId = undefined) => {
     }
 }
 
-export const getEvents = () => {
+export const getEvents = timelineId => {
     return {
         type: GET_EVENTS,
-        payload: axios.get('/api/timeline/event')
+        payload: axios.get(`/api/timeline/event?timelineId=${timelineId}`)
     }
 }
 
