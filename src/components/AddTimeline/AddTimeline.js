@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import {connect} from 'react-redux'
 import {addTimeline} from '../../redux/reducers/timelineReducer'
+import 'react-datepicker/dist/react-datepicker.css'
 
 class AddTimeline extends Component {
     constructor() {
@@ -57,7 +57,7 @@ class AddTimeline extends Component {
                 <input name='title' value={this.state.title} onChange={this.handleChange} />
                 <label htmlFor='content'>Description</label>
                 <input name='content' value={this.state.content} onChange={this.handleChange} /> */}
-                <button>Submit</button>
+                <button onClick={this.submit}>Submit</button>
                 <button onClick={this.cancel}>Cancel</button>
             </div>
         )

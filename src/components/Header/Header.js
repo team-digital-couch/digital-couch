@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import {getMe} from '../../redux/reducers/userReducer'
 import logo from '../../digitalCouchLogo.svg'
 import './Header.css'
@@ -14,6 +15,12 @@ class Header extends Component {
 
     componentDidMount() {
         this.props.getMe()
+    }
+
+    componentDidUpdate(prevProps) {
+        if(!this.props.userLoading && prevProps.userLoading && !this.props.userId) {
+            this.props.history.push('/')
+        }
     }
 
     render() {
@@ -36,7 +43,8 @@ class Header extends Component {
 const checkout = state => ({
     userId: state.userReducer.userId,
     username: state.userReducer.username,
-    avatar: state.userReducer.avatar
+    avatar: state.userReducer.avatar,
+    userLoading: state.userReducer.userLoading
 })
 
-export default connect(checkout, {getMe})(Header)
+export default connect(checkout, {getMe})(withRouter(Header))
