@@ -9,7 +9,8 @@ const initialState = {
     avatar: '',
     selectedClient: 0,
     info: {},
-    clients: []
+    clients: [],
+    userLoading: false
 }
 
 //const strings
@@ -89,28 +90,40 @@ export function getClients() {
 export default function reducer(state = initialState, action){
     const { type, payload } = action
     switch(type){
+        case `${REGISTER_USER}_PENDING`:
+            return {
+                ...state,
+                userLoading: true
+            }
         case `${REGISTER_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.userId,
                 username: payload.data.username,
                 isProvider: payload.data.isProvider,
-                avatar: payload.data.avatar
+                avatar: payload.data.avatar,
+                userLoading: false
             }
-        case `${LOGIN_USER}_REJECTED`:
-            toast.error(payload.response.data.message)
-            return state
         case `${REGISTER_USER}_REJECTED`:
             toast.error(payload.response.data.message)
             return state
+        case `${LOGIN_USER}_PENDING`:
+            return {
+                ...state,
+                userLoading: true
+            }
         case `${LOGIN_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.userId,
                 username: payload.data.username,
                 isProvider: payload.data.isProvider,
-                avatar: payload.data.avatar
+                avatar: payload.data.avatar,
+                userLoading: false
             }
+        case `${LOGIN_USER}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
         case `${LOGOUT_USER}_FULFILLED`:
             return {
                 ...state,
@@ -118,14 +131,20 @@ export default function reducer(state = initialState, action){
                 username: '',
                 isProvider: false,
                 avatar: ''
-            }   
+            }
+        case `${GET_ME}_PENDING`:
+            return {
+                ...state,
+                userLoading: true
+            }
         case `${GET_ME}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.userId,
                 username: payload.data.username,
                 isProvider: payload.data.isProvider,
-                avatar: payload.data.avatar
+                avatar: payload.data.avatar,
+                userLoading: false
             }
         case SELECT_CLIENT:
             return {
@@ -140,7 +159,7 @@ export default function reducer(state = initialState, action){
         case `${GET_USER_INFO}_FULFILLED`:
             return {
                 ...state,
-                info: payload.data
+                info: payload.data[0]
             }
         case `${GET_USER_INFO}_REJECTED`:
             toast.error(payload.response.data.message)

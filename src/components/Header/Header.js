@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getMe} from '../../redux/reducers/userReducer'
-import logo from '../../temp_logo.png'
+import logo from '../../digitalCouchLogo.svg'
 import './Header.css'
 
 class Header extends Component {
@@ -21,12 +21,12 @@ class Header extends Component {
             <div className='header-container'>
                 <div className='header-logo-container'>
                     <img src={logo} alt='Logo' />
-                    <span>Digital Couch</span>
+                    {/* <span>Digital Couch</span> */}
                 </div>
                 <div className='header-menu-container'>
                     <i className='far fa-bell' />
-                    {/* <img src={this.props.avatar} alt='Avatar' /> */}
-                    <img src='https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png' alt='avatar' />
+                    <img src={this.props.avatar} alt='Avatar' />
+                    {/* <img src='https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png' alt='avatar' /> */}
                 </div>
             </div>
         )

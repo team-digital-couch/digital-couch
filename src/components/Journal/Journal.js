@@ -5,7 +5,7 @@ import moment from 'moment';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Journal.css";
-import {getJournal, addJournal, editJournal, deleteJournal} from '../../redux/reducers/journalReducer';
+import {getJournal, getJournals} from '../../redux/reducers/journalReducer';
 
 const localizer = momentLocalizer(moment);
 
@@ -13,16 +13,12 @@ class Journal extends React.Component{
     constructor(){
         super()
         this.state = {
-            clickedId: null
-            // events: [
-            //     {
-            //       start: new Date(),
-            //       end: new Date(),
-            //       title: "Some title",
-            //       id: null
-            //     }
-            //   ]
+            journalId: 0
         }
+    }
+
+    componentDidMount(){
+        this.props.getJournals();
     }
 
     // componentDidUpdate(prevProps, prevState){
@@ -38,12 +34,13 @@ class Journal extends React.Component{
     //     })
     // }
 
-    // clickJournal = () => {
-        
-    //   }
+    clickJournal = (event) => {
+        this.setState({journalId: event.id})
+        // console.log(this.state.journalIndex)
+      }
 
     render(){
-        console.log(this.props.events)
+        console.log(this.props.journals)
         return(
             <div>
                 <section id='calendar_section'>
@@ -56,13 +53,17 @@ class Journal extends React.Component{
                     />
                     <Link to='/addJournal'>Add a new Journal entry</Link>
                 </section>
-                <section id='journal_display'>
-                    <div id='journal_title_date'>
-                        <h1>Title</h1>
-                        <h1>Date</h1>
-                    </div>
-                    <h2>Content</h2>
-                </section>
+                {this.props.journals.map(map => {
+                    return(
+                        <section id='journal_display'>
+                            <div id='journal_title_date'>
+                                <h1>{map.title}</h1>
+                                <h1>{map.start}</h1>
+                            </div>
+                            <h2>{map.content}</h2>
+                        </section>
+                    )
+                })}
             </div>
         )
     }
@@ -71,8 +72,9 @@ class Journal extends React.Component{
 const mapStateToProps = (reduxState) => {
     return{
         journal: reduxState.journalReducer.journal,
+        journals: reduxState.journalReducer.journals,
         events: reduxState.journalReducer.events
     }
 }
 
-export default connect(mapStateToProps, {getJournal})(Journal);
+export default connect(mapStateToProps, {getJournal, getJournals})(Journal);

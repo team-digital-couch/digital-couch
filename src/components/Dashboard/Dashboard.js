@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
-import {getUserInfo, getClients, setClient, clearClient} from '../../redux/reducers/userReducer';
+import {getUserInfo, getClients, selectClient, clearClient} from '../../redux/reducers/userReducer';
 
 class Dashboard extends Component {
     constructor() {
@@ -12,19 +12,21 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        if(this.props.selectedClient) {
-            this.props.getUserInfo(this.props.match.params.clientId)
-        } else {
-            this.props.getUserInfo()
-        }
-
-        if(this.props.isProvider) {
-            this.props.getClients()
-        }
+        // if(!this.props.userLoading && prevProps.userLoading) {
+            if(this.props.selectedClient) {
+                this.props.getUserInfo(this.props.match.params.clientId)
+            } else {
+                this.props.getUserInfo()
+            }
+    
+            if(this.props.isProvider && !this.props.selectedClient) {
+                this.props.getClients()
+            }
+        // }
     }
 
     setClient = id => {
-        this.props.setClient(id)
+        this.props.selectClient(id)
         this.props.history.push(`/clientInfo/${id}`)
     }
 
@@ -34,7 +36,8 @@ class Dashboard extends Component {
     }
 
     render() {
-        const info = this.props.userInfo.keys().map(v => <div key={v.id}><h1>{v}: </h1><span>this.props.userInfo[v]</span><br /></div>)
+        const info = Object.keys(this.props.userInfo).map((v, i) => <div key={i}><h1>{v}: </h1><span>{this.props.userInfo[v]}</span><br /></div>)
+        console.log(this.props.userInfo, info)
 
         const clients = this.props.clients ? this.props.clients.map(v => <div className='provider-client' onClick={() => this.setClient(v.id)} key={v.id}>{v.name}</div>) : null
 
@@ -51,7 +54,8 @@ class Dashboard extends Component {
 const mapStateToProps = reduxState => ({
     isProvider: reduxState.userReducer.isProvider,
     selectedClient: reduxState.userReducer.selectedClient,
-    userInfo: reduxState.userReducer.userInfo
+    userInfo: reduxState.userReducer.info,
+    userLoading: reduxState.userReducer.userLoading
 })
 
-export default connect(mapStateToProps, {getUserInfo, getClients, setClient, clearClient})(withRouter(Dashboard))
+export default connect(mapStateToProps, {getUserInfo, getClients, selectClient, clearClient})(withRouter(Dashboard))

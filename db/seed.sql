@@ -32,10 +32,19 @@ provider_id INTEGER,
 pending BOOLEAN
 );
 
+-- CREATE TABLE journal (
+-- id SERIAL PRIMARY KEY,
+-- user_id INTEGER,
+-- time TIMESTAMP,
+-- content TEXT,
+-- title VARCHAR(40)
+-- );
+
 CREATE TABLE journal (
 id SERIAL PRIMARY KEY,
 user_id INTEGER,
-time TIMESTAMP,
+start_date TIMESTAMP,
+end_date TIMESTAMP,
 content TEXT,
 title VARCHAR(40)
 );
