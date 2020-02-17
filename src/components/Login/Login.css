@@ -1,1 +1,65 @@
-/* No CSS *//*# sourceMappingURL=Login.css.map */
+.login-container {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-container .login-logo {
+  height: 600px;
+  width: 800px;
+}
+
+.login-box {
+  height: 40%;
+  width: 40%;
+  min-width: 400px;
+  border: 2px solid #d2bef4;
+  background-color: #b0cce8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+}
+
+.login-box * {
+  margin: 5px 0px;
+}
+
+.login-box input {
+  border-radius: 5px;
+  border: 1px solid #b0cce8;
+  font-family: 'Open Sans', sans-serif;
+  height: 30px;
+  padding: 0px 5px;
+}
+
+.login-box button {
+  padding: 7px 15px;
+  border-radius: 5px;
+  border-color: #d2bef4;
+  background-color: #fffdea;
+  color: #214000;
+}
+/*# sourceMappingURL=Login.css.map */

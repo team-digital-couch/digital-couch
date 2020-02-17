@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../../redux/reducers/userReducer';
+import logo from '../../digitalCouchLogo.svg'
+import './Register.css'
 
 class Register extends Component {
     constructor() {
@@ -44,14 +46,17 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
-                <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
-                <input type='email' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
-                Are You a Provider?<input type='checkbox' onChange={this.handleBoxClick} checked={this.state.isProvider} />
-                {/* <Link to='/dashboard'><button onClick={this.registerLocal}>Register</button></Link> */}
-                <button onClick={this.registerLocal}>Register</button>
-                <p>Already have an Account? Login <Link to='/'>Here</Link></p>
+            <div className='register-container'>
+                <img src={logo} alt='Logo' className='register-logo' />
+                <div className='register-box'>
+                    <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
+                    <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
+                    <input type='email' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}></input>
+                    <div className='register-check'>Are You a Provider?<input type='checkbox' onChange={this.handleBoxClick} checked={this.state.isProvider} /></div>
+                    {/* <Link to='/dashboard'><button onClick={this.registerLocal}>Register</button></Link> */}
+                    <button onClick={this.registerLocal}>Register</button>
+                    <p>Already have an Account? Login <Link to='/'>Here</Link></p>
+                </div>
             </div>
         )
     }
