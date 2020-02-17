@@ -4,8 +4,7 @@ import axios from "axios";
 
 const initialState = {
     client_id: null,
-    time: '',
-    content: ''
+    provider_notes: []
 }
 
 //constants
@@ -52,7 +51,8 @@ export default function reducer(state=initialState, action){
     switch(type){
         case `${GET_PROVIDER_NOTES}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                provider_notes: payload.data
             }
         case `${GET_PROVIDER_NOTES}_REJECTED`:
             return{

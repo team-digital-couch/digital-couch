@@ -8,6 +8,10 @@ $wheat-beige: rgb(237, 217, 180);
 $paragraph-font: 'Open Sans';
 $header-font: 'Lemonada';
 
+#journal_component{
+    z-index: 2;
+}
+
 #calendar_section{
     display: flex;
     justify-content: center;

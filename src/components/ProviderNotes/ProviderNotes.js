@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {getProviderNotes} from '../../redux/reducers/providerNotesReducer'
 
 class ProviderNotes extends React.Component{
     constructor(){
         super()
         this.state = {}
+    }
+
+    componentDidMount(){
+        this.props.getProviderNotes();
     }
 
     render(){
@@ -20,4 +25,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps)(ProviderNotes);
+export default connect(mapStateToProps, {getProviderNotes})(ProviderNotes);

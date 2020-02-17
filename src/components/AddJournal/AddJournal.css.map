@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,qBAAqB,CAAA;EACjB,OAAO,EAAE,CAAC;CACb",
+    "sources": [
+        "AddJournal.scss"
+    ],
+    "names": [],
+    "file": "AddJournal.css"
+}

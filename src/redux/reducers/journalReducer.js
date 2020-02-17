@@ -103,7 +103,8 @@ export default function reducer(state=initialState, action){
             }
         case `${DELETE_JOURNAL}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                journals: payload.data
             }
         case `${DELETE_JOURNAL}_REJECTED`:
             return{

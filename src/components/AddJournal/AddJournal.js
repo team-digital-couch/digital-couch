@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {addJournal, getJournals} from '../../redux/reducers/journalReducer';
+import './AddJournal.css'
 
 class AddJournal extends React.Component{
     constructor(){
@@ -42,7 +43,7 @@ class AddJournal extends React.Component{
 
     render(){
         return(
-            <div>
+            <div id='addJournal_component'>
                 <Link to='/journal'>Back</Link>
                 <input name='title' placeholder='title' onChange={this.inputChange}/>
                 <textarea name='content' placeholder='How are you feeling?' onChange={this.inputChange}></textarea>
