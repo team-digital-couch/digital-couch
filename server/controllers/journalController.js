@@ -2,7 +2,16 @@ module.exports = {
     getJournals: async (req, res) => {
         const db = req.app.get('db');
         const journals = await db.journal.getJournals();
-        res.status(200).json(journals);
+        const updatedJournals = journals.map(journal => ({
+            id: journal.id,
+            user_id: journal.user_id,
+            start: journal.start_date,
+            end: journal.end_date,
+            content: journal.content,
+            title: journal.title
+        }))
+        console.log(journals)
+        res.status(200).json(updatedJournals);
     },
 
     getJournal: async (req, res) => {
@@ -14,9 +23,9 @@ module.exports = {
 
     addJournal: async (req, res) => {
         const db = req.app.get('db');
-        const {user_id, time, content} = req.body;
-        const newJournal = await db.journal.addJournal(user_id, time, content);
-        res.status(200).json(newJournal);
+        const {user_id, start_date, end_date, content, title} = req.body;
+        const newJournals = await db.journal.addJournal(user_id, start_date, end_date, content, title);
+        res.status(200).json(newJournals);
     },
 
     editJournal: async (req, res) => {

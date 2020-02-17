@@ -8,6 +8,7 @@ import AddJournal from './components/AddJournal/AddJournal';
 import Dashboard from './components/Dashboard/Dashboard';
 
 
+
 export default (
     <Switch>
         <Route exact path='/' component={Login} />
