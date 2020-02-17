@@ -19,6 +19,7 @@
 .login-container .login-logo {
   height: 600px;
   width: 800px;
+  margin-top: -200px;
 }
 
 .login-box {
@@ -41,6 +42,7 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
+  margin-top: -200px;
 }
 
 .login-box * {
