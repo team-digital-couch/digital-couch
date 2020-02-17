@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {getTimelines, getEvents} from '../../redux/reducers/timelineReducer'
+import {getTimelines, getEvents, deleteTimeline} from '../../redux/reducers/timelineReducer'
 import TimelineEvent from '../TimelineEvent/TimelineEvent'
 import AddTimeline from '../AddTimeline/AddTimeline'
 
@@ -37,7 +37,9 @@ class Timeline extends Component {
 
     edit = () => {}
 
-    delete = () => {}
+    delete = id => {
+        this.props.deleteTimeline(id)
+    }
 
     render() {
         const selected = this.props.timelines.reduce((t, v) => v.id == this.state.selection ? v : t, {})
@@ -63,7 +65,7 @@ class Timeline extends Component {
                         <TimelineEvent timelineId={selected.id} />
                         <span>{selected.end_date}</span>
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => this.delete(selected.id)}>Delete</button>
                     </div>
                 ) : null}
             </div>
@@ -77,4 +79,4 @@ const checkout = state => ({
     eventLoading: state.timelineReducer.eventLoading
 })
 
-export default connect(checkout, {getTimelines, getEvents})(Timeline)
+export default connect(checkout, {getTimelines, getEvents, deleteTimeline})(Timeline)

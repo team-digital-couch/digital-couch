@@ -115,3 +115,16 @@ REFERENCES users(user_id);
 ALTER TABLE provider_notes
 ADD FOREIGN KEY (client_id)
 REFERENCES users(user_id);
+
+CREATE OR REPLACE FUNCTION deleteEvent(INTEGER) RETURNS SETOF timeline_event AS
+$BODY$
+DECLARE
+    timeline INTEGER := (SELECT timeline_id FROM timeline_event WHERE id = $1);
+BEGIN
+    DELETE FROM timeline_event
+    WHERE id = $1;
+
+    RETURN QUERY SELECT * FROM timeline_event WHERE timeline_id = timeline;
+END
+$BODY$
+LANGUAGE plpgsql;

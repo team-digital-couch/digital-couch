@@ -12,7 +12,8 @@ module.exports = {
 
         try {
             const events = await db.timelineEvent.create(timelineId, title, time, isApproximate, content)
-            res.status(200).json(events)
+            const sortedEvents = sortEvents(events)
+            res.status(200).json(sortedEvents)
         } catch(err) {
             console.log('Create timeline event', err)
             res.status(500).json({message:'Could not create timeline event'})
@@ -56,7 +57,8 @@ module.exports = {
 
         try {
             const events = await db.timelineEvent.delete(id)
-            res.status(200).json(events)
+            const sortedEvents = sortEvents(events)
+            res.status(200).json(sortedEvents)
         } catch(err) {
             console.log('Delete event', err)
             res.status(500).json({message: 'Could not delete event'})

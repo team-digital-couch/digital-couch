@@ -45,7 +45,7 @@ module.exports = {
         const id = req.params.id
 
         try {
-            const timelines = await db.timeline.delete(id)
+            const timelines = await db.timeline.delete(id, req.session.user.userId)
             res.status(200).json(timelines)
         } catch(err) {
             console.log('Delete timeline', err)
