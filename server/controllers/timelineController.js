@@ -4,7 +4,7 @@ module.exports = {
         const {name, startDate, endDate} = req.body
 
         try {
-            const timelines = await db.timeline.create(req.session.user.id, name, startDate, endDate)
+            const timelines = await db.timeline.create(req.session.user.userId, name, startDate, endDate)
             res.status(200).json(timelines)
         } catch(err) {
             console.log('Add timeline', err)
@@ -15,7 +15,7 @@ module.exports = {
 
     read: async (req, res) => {
         const db = req.app.get('db')
-        const userId = req.app.query ? req.app.query.clientId : req.session.user ? req.session.user.id : 0
+        const userId = req.app.query ? req.app.query.clientId : req.session.user ? req.session.user.userId : 0
 
         try {
             const timelines = await db.timeline.read(userId)
@@ -32,7 +32,7 @@ module.exports = {
         const {name, startDate, endDate} = req.body
 
         try {
-            const timelines = await db.timeline.updateOne(req.session.user.id, name, startDate, endDate)
+            const timelines = await db.timeline.updateOne(req.session.user.userId, name, startDate, endDate)
             res.status(200).json(timelines)
         } catch(err) {
             console.log('Update timeline', err)

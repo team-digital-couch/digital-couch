@@ -40,12 +40,14 @@ class Timeline extends Component {
     delete = () => {}
 
     render() {
+        const selected = this.props.timelines.reduce((t, v) => v.id == this.state.selection ? v : t, {})
+
         return (
             <div>
                 <div>
                     <label htmlFor='timelineSelector'>Timeline:</label>
-                    <select name='timelineSelector' value={this.state.selection} onChange={this.handleChange}>
-                        <option value={0} selected>Please make a selection</option>
+                    <select name='selection' value={this.state.selection} onChange={this.handleChange}>
+                        <option value={0} >Please make a selection</option>
                         {!this.props.timelineLoading && this.props.timelines.map(v => {
                             return <option key={v.id} value={v.id}>{v.name}</option>
                         })}
@@ -56,10 +58,10 @@ class Timeline extends Component {
                 {this.state.showForm && <AddTimeline closeForm={this.closeForm} />}
                 {this.state.selection && !this.props.eventLoading ? (
                     <div className='hi'>
-                        <h1>{this.props.timelines[this.state.selection].name}</h1>
-                        <span>{this.props.timelines[this.state.selection].startDate}</span>
-                        <TimelineEvent />
-                        <span>{this.props.timelines[this.state.selection].endDate}</span>
+                        <h1>{selected.name}</h1>
+                        <span>{selected.start_date}</span>
+                        <TimelineEvent timelineId={selected.id} />
+                        <span>{selected.end_date}</span>
                         <button>Edit</button>
                         <button>Delete</button>
                     </div>
