@@ -8,6 +8,7 @@
   }
 
 .register-container {
+    z-index: 2;
     height: 100%;
     width: 100%;
     display: flex;
@@ -17,6 +18,7 @@
     .register-logo {
         height: 600px;
         width: 800px;
+        margin-top: -200px;
     }
 }
 
@@ -31,6 +33,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    margin-top: -200px;
     * {
         margin: 5px 0px;
     }
