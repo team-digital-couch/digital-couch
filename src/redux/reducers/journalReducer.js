@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 //initial state
 
@@ -81,35 +82,32 @@ export default function reducer(state=initialState, action){
                 events: payload.data
             }
         case ` ${GET_JOURNALS}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
+            
         case `${ADD_JOURNAL}_FULFILLED`:
             return{
                 ...state,
                 journals: payload.data
             }
         case `${ADD_JOURNAL}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${EDIT_JOURNAL}_FULFILLED`:
             return{
                 ...state
             }
         case `${EDIT_JOURNAL}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${DELETE_JOURNAL}_FULFILLED`:
             return{
                 ...state,
                 journals: payload.data
             }
         case `${DELETE_JOURNAL}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         default: return state
     }
 }

@@ -21,6 +21,12 @@
   width: 200px;
 }
 
+.header-container #logo {
+  height: 70px;
+  width: 160px;
+  margin-top: 16px;
+}
+
 .header-container span {
   position: absolute;
   top: 20px;

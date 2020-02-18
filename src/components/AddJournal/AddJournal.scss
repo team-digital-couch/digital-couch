@@ -9,8 +9,17 @@ $soft-violet: rgb(210, 190, 244);
   }
 
 #addJournal_component{
+    width: 100vw;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     button{
         @include buttons();
+    }
+    #content{
+        height: 600px;
+        width: 475px;
     }
 }

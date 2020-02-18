@@ -27,7 +27,7 @@ class Header extends Component {
         return (
             <div className='header-container'>
                 <div className='header-logo-container'>
-                    <img src={logo} alt='Logo' />
+                    <img id='logo' src={logo} alt='Logo' />
                     {/* <span>Digital Couch</span> */}
                 </div>
                 <div className='header-menu-container'>

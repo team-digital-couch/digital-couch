@@ -46,7 +46,7 @@ class AddJournal extends React.Component{
             <div id='addJournal_component'>
                 <Link to='/journal'>Back</Link>
                 <input name='title' placeholder='title' onChange={this.inputChange}/>
-                <textarea name='content' placeholder='How are you feeling?' onChange={this.inputChange}></textarea>
+                <textarea id='content' name='content' placeholder='How are you feeling?' onChange={this.inputChange}></textarea>
                 <button onClick={this.addJournal}>Add Journal</button>
             </div>
         )

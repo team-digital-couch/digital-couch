@@ -6,12 +6,13 @@
 -- CREATE OR REPLACE FUNCTION deleteProviderNotes(INTEGER) RETURNS SETOF provider_notes AS
 -- $BODY$
 -- DECLARE
---     timeline INTEGER := (SELECT timeline_id FROM timeline_event WHERE id = $1);
+--     providerNote INTEGER := (SELECT provider_id FROM provider_notes WHERE id = $1);
+--     client INTEGER := (SELECT client_id FROM provider_notes WHERE id = $2);
 -- BEGIN
 --     DELETE FROM provider_notes
 --     WHERE id = $1;
 
---     RETURN QUERY SELECT * FROM provider_notes WHERE timeline_id = timeline;
+--     RETURN QUERY SELECT * FROM provider_notes WHERE id = providerNote;
 -- END
 -- $BODY$
 -- LANGUAGE plpgsql;

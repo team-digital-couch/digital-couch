@@ -6,6 +6,7 @@ import {Calendar, momentLocalizer} from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Journal.css";
 import {getJournal, getJournals, deleteJournal} from '../../redux/reducers/journalReducer';
+import {getMe} from '../../redux/reducers/userReducer';
 
 const localizer = momentLocalizer(moment);
 
@@ -19,6 +20,7 @@ class Journal extends React.Component{
 
     componentDidMount(){
         this.props.getJournals();
+        this.props.getMe();
     }
 
     deleteJournal(id){
@@ -34,7 +36,7 @@ class Journal extends React.Component{
         let journalId = this.state.journalId;
         let filteredJournal = this.props.journals.filter(journal => journal.id == journalId).map(journal => {
             return(
-                <section id='journal_display'>
+                <section>
                     <div id='journal_title_date'>
                         <h1>{journal.title}</h1>
                         <h1>{journal.start}</h1>
@@ -75,4 +77,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps, {getJournal, getJournals, deleteJournal})(Journal);
+export default connect(mapStateToProps, {getJournal, getJournals, deleteJournal, getMe})(Journal);

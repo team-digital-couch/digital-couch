@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getProviderNotes} from '../../redux/reducers/providerNotesReducer'
+import {getProviderNotes} from '../../redux/reducers/providerNotesReducer';
+import {getMe} from '../../redux/reducers/userReducer';
 
 class ProviderNotes extends React.Component{
     constructor(){
@@ -10,6 +11,7 @@ class ProviderNotes extends React.Component{
 
     componentDidMount(){
         this.props.getProviderNotes();
+        this.props.getMe();
     }
 
     render(){
@@ -21,8 +23,8 @@ class ProviderNotes extends React.Component{
 
 const mapStateToProps = (reduxState) => {
     return{
-        content: reduxState.providerNotesReducer.content
+        provider_Notes: reduxState.providerNotesReducer.provider_Notes
     }
 }
 
-export default connect(mapStateToProps, {getProviderNotes})(ProviderNotes);
+export default connect(mapStateToProps, {getProviderNotes, getMe})(ProviderNotes);
