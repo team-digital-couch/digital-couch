@@ -87,7 +87,12 @@ export function getClients() {
     }
 }
 
-export function updateInfo(updatedInfo)
+export function updateInfo(id, updatedInfo) {
+    return {
+        type: UPDATE_INFO,
+        payload: axios.put(`/api/user/info/${id}`, updatedInfo)
+    }
+}
 
 //reducer
 export default function reducer(state = initialState, action){
@@ -172,6 +177,20 @@ export default function reducer(state = initialState, action){
                 ...state,
                 clients: payload.data
             }
+        case `${UPDATE_INFO}_PENDING`:
+            return {
+                ...state,
+                userLoading: true
+            }
+        case `${UPDATE_INFO}_FULFILLED`:
+            toast.success(payload.data.message)
+            return {
+                ...state,
+                userLoading: false
+            }
+        case `${UPDATE_INFO}_REJECTED`:
+            toast.error(payload.error.data.message)
+            return state
         default: return state;
     }
 }
