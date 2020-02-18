@@ -22,6 +22,7 @@ const SELECT_CLIENT = 'SELECT_CLIENT'
 const CLEAR_CLIENT = 'CLEAR_CLIENT'
 const GET_USER_INFO = 'GET_USER_INFO'
 const GET_CLIENTS = 'GET_CLIENTS'
+const UPDATE_INFO = 'UPDATE_INFO'
 
 //functions
 export function registerUser(user){
@@ -85,6 +86,8 @@ export function getClients() {
         payload: axios.get('/api/connections')
     }
 }
+
+export function updateInfo(updatedInfo)
 
 //reducer
 export default function reducer(state = initialState, action){
