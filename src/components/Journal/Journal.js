@@ -5,7 +5,8 @@ import moment from 'moment';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Journal.css";
-import {getJournal, getJournals} from '../../redux/reducers/journalReducer';
+import {getJournal, getJournals, deleteJournal} from '../../redux/reducers/journalReducer';
+import {getMe} from '../../redux/reducers/userReducer';
 
 const localizer = momentLocalizer(moment);
 
@@ -19,20 +20,12 @@ class Journal extends React.Component{
 
     componentDidMount(){
         this.props.getJournals();
+        this.props.getMe();
     }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     if(this.props.journal  !== prevState.journal){
-    //         this.getJournal()
-    //     }
-    // }
-
-    // checkState = (e) => {
-    //     this.setState({[this.state.events[0].id]: e.target.value})
-    //     this.setState({
-    //         events: [...this.state.events.filter(v => v.id == ), {}]
-    //     })
-    // }
+    deleteJournal(id){
+        this.props.deleteJournal(id)
+    }
 
     clickJournal = (event) => {
         this.setState({journalId: event.id})
@@ -43,18 +36,18 @@ class Journal extends React.Component{
         let journalId = this.state.journalId;
         let filteredJournal = this.props.journals.filter(journal => journal.id == journalId).map(journal => {
             return(
-                <section id='journal_display'>
+                <section>
                     <div id='journal_title_date'>
                         <h1>{journal.title}</h1>
                         <h1>{journal.start}</h1>
+                        <button onClick={() => this.deleteJournal(journal.id)}>X</button>
                     </div>
                     <h2>{journal.content}</h2>
                 </section>
             )
         });
-        console.log(filteredJournal[0]);
         return(
-            <div>
+            <div id='journal_component'>
                 <section id='calendar_section'>
                     <Calendar
                         localizer={localizer}
@@ -65,17 +58,6 @@ class Journal extends React.Component{
                     />
                     <Link to='/addJournal'>Add a new Journal entry</Link>
                 </section>
-                {/* {this.props.journals.map(map => {
-                    return(
-                        <section id='journal_display'>
-                            <div id='journal_title_date'>
-                                <h1>{map.title}</h1>
-                                <h1>{map.start}</h1>
-                            </div>
-                            <h2>{map.content}</h2>
-                        </section>
-                    )
-                })} */}
                 <section id='journal_display'>
                     <div id='journal_title_date'>
                         <h1>{filteredJournal[0]}</h1>
@@ -95,4 +77,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps, {getJournal, getJournals})(Journal);
+export default connect(mapStateToProps, {getJournal, getJournals, deleteJournal, getMe})(Journal);

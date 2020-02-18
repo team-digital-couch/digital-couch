@@ -88,7 +88,7 @@ app.delete('/api/timeline/event/:id', timelineEventController.delete);
 
 //provider notes
 app.post('/api/notes', addProviderNotes);
-app.get('/api/notes', getProviderNotes);
+app.get('/api/notes/', getProviderNotes);
 app.put('/api/notes/:id', editProviderNotes);
 app.delete('/api/notes/:id', deleteProviderNotes);
 
