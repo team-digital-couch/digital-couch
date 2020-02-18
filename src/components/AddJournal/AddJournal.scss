@@ -1,0 +1,25 @@
+$mossy-green: rgb(159, 216, 176);
+$soft-violet: rgb(210, 190, 244);
+
+@mixin buttons() {
+    padding: 7px 15px;
+    border-radius: 20px;
+    background-color: $mossy-green;
+    color: black;
+  }
+
+#addJournal_component{
+    width: 100vw;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button{
+        @include buttons();
+    }
+    #content{
+        height: 600px;
+        width: 475px;
+    }
+}

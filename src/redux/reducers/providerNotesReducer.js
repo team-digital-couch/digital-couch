@@ -1,11 +1,11 @@
 import axios from "axios";
+import {toast} from 'react-toastify';
 
 //initial state
 
 const initialState = {
     client_id: null,
-    time: '',
-    content: ''
+    provider_notes: []
 }
 
 //constants
@@ -52,36 +52,33 @@ export default function reducer(state=initialState, action){
     switch(type){
         case `${GET_PROVIDER_NOTES}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                provider_notes: payload.data
             }
         case `${GET_PROVIDER_NOTES}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${ADD_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state
             }
         case `${ADD_PROVIDER_NOTES}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${EDIT_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state
             }
         case `${EDIT_PROVIDER_NOTES}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         case `${DELETE_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state
             }
         case `${DELETE_PROVIDER_NOTES}_REJECTED`:
-            return{
-                ...state
-            }
+            toast.error(payload.response.data.message)
+            return state
         default: return state
     }
 }
