@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getUserInfo, getClients, selectClient, clearClient} from '../../redux/reducers/userReducer';
+import DashboardForm from '../DashboardForm/DashboardForm'
 
 class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-                 
+            showForm: false
         }
     }
 
@@ -35,6 +36,10 @@ class Dashboard extends Component {
         this.props.history.push('/dashboard')
     }
 
+    toggleForm = () => {
+        this.setState({showForm: !this.state.showForm})
+    }
+
     render() {
         const info = Object.keys(this.props.userInfo).map((v, i) => <div key={i}><h1>{v}: </h1><span>{this.props.userInfo[v]}</span><br /></div>)
         console.log(this.props.userInfo, info)
@@ -43,9 +48,14 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <button >Back</button>
-                {info}
-                {clients && !this.props.selectedClient ? clients : null}
+                {this.state.showForm ? <DashboardForm closeForm={this.toggleForm} /> : (
+                    <div>
+                        <button >Back</button>
+                        {info}
+                        {clients && !this.props.selectedClient ? clients : null}
+                        <button onClick={this.toggleForm}>Edit</button>
+                    </div>
+                )}
             </div>
         )
     }

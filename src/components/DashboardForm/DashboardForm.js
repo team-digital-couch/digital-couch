@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {updateInfo} from '../../redux/reducers/userReducer'
 require('dotenv').config();
 
 class DashboardForm extends Component {
@@ -24,6 +25,12 @@ class DashboardForm extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if(!this.props.userLoading && prevProps.userLoading) {
+            this.props.closeForm()
+        }
+    }
+
     checkUploadResult = (error, resultEvent, key) => {
         if (resultEvent.event === 'success') {
         this.setState({ [key]: resultEvent.info.url })
@@ -36,9 +43,11 @@ class DashboardForm extends Component {
         })
     }
 
-    handleUploadClick = e => {
-        let widget 
+    handleUploadClick = key => {
+        let widget
+        console.log(key)
         if(window.cloudinary) {
+            console.log(process.env.REACT_APP_cloudName)
             widget = window.cloudinary.createUploadWidget(
                 {
                     cloudName: `${process.env.REACT_APP_cloudName}`,
@@ -47,11 +56,20 @@ class DashboardForm extends Component {
                     Default: false
                 },
                 (error, result) => {
-                    this.checkUploadResult(error, result, e.target.name)
-                    this.checkUploadResult(error, result, e.target.name)
+                    this.checkUploadResult(error, result, key)
+                    this.checkUploadResult(error, result, key)
                 })
             widget.open()
         }
+    }
+
+    testClick = () => {
+        console.log('hit')
+    }
+
+    submit = () => {
+        const {first_name, last_name, pronouns, avatar, insurance_card, phone, email, billing_address, billing_city, billing_zipcode, address, city, zipcode, hours, bio} = this.state
+        this.props.updateInfo(this.props.info.id, {first_name, last_name, pronouns, avatar, insurance_card, phone, email, billing_address, billing_city, billing_zipcode, address, city, zipcode, hours, bio})
     }
 
     render() {
@@ -61,31 +79,33 @@ class DashboardForm extends Component {
             <div>
                 <input type='hidden' name='avatar' onChange={this.handleInputChange} value={this.state.avatar} />
                 <img src={this.state.avatar} alt='Avatar' />
-                <button name='avatar' onClick={e => this.handleUploadClick}>Select Image</button>
-                <input name='first_name' onChange={this.handleInputChange} value={this.state.first_name} />
-                <input name='last_name' onChange={this.handleInputChange} value={this.state.last_name} />
-                <input name='prounous' onChange={this.handleInputChange} value={this.state.pronouns} />
+                <button onClick={() => this.handleUploadClick('avatar')}>Select Avatar Image</button>
+                <input name='first_name' placeholder='First Name' onChange={this.handleInputChange} value={this.state.first_name} />
+                <input name='last_name' placeholder='Last Name' onChange={this.handleInputChange} value={this.state.last_name} />
+                <input name='prounous' placeholder='Pronouns (ex. "she/her")' onChange={this.handleInputChange} value={this.state.pronouns} />
                 {this.props.isProvider ? null : (
                     <div>
                         <input type='hidden' name='insurance_card' onChange={this.handleInputChange} value={this.state.insurance_card} />
                         <img src={this.state.insurance_card} alt='Insurance card' />
-                        <button name='insurance_card' onClick={e => this.handleUploadClick}>Select Image</button>
+                        <button onClick={() => this.handleUploadClick('insurance_card')}>Select Insurance Card Image</button>
                     </div>
                 )}
-                <input name='phone' onChange={this.handleInputChange} value={this.state.phone} />
-                <input name='email' onChange={this.handleInputChange} value={this.state.email}  />
+                <input name='phone' placeholder='Phone Number' onChange={this.handleInputChange} value={this.state.phone} />
+                <input name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email}  />
                 {this.props.isProvider ? null : (
                     <div>
-                        <input name='billing_address' onChange={this.handleInputChange} value={this.state.billing_address} />
-                        <input name='billing_city' onChange={this.handleInputChange} value={this.state.billing_city} />
-                        <input name='billing_zipcode' onChange={this.handleInputChange} value={this.state.billing_zipcode} />
+                        <input name='billing_address' placeholder='Billing Address' onChange={this.handleInputChange} value={this.state.billing_address} />
+                        <input name='billing_city' placeholder='Billing City' onChange={this.handleInputChange} value={this.state.billing_city} />
+                        <input name='billing_zipcode' placeholder='Billing Zipcode' onChange={this.handleInputChange} value={this.state.billing_zipcode} />
                     </div>
                 )}
-                <input name='address' onChange={this.handleInputChange} value={this.state.address} />
-                <input name='city' onChange={this.handleInputChange} value={this.state.city} />
-                <input name='zipcode' onChange={this.handleInputChange} value={this.state.zipcode} />
-                {!this.props.isProvider ? null : (<input name='hours' onChange={this.handleInputChange} value={this.state.hours} />)}
-                <textarea name='bio' onChange={this.handleInputChange} value={this.state.bio} />
+                <input name='address' placeholder='Address' onChange={this.handleInputChange} value={this.state.address} />
+                <input name='city' placeholder='City' onChange={this.handleInputChange} value={this.state.city} />
+                <input name='zipcode' placeholder='Zipcode' onChange={this.handleInputChange} value={this.state.zipcode} />
+                {!this.props.isProvider ? null : (<input name='hours' placeholder='Business Hours' onChange={this.handleInputChange} value={this.state.hours} />)}
+                <textarea name='bio' placeholder='Tell us about you...' onChange={this.handleInputChange} value={this.state.bio} />
+                <button onClick={this.submit}>Save Changes</button>
+                <button onClick={this.props.closeForm}>Cancel</button>
             </div>
         )
     }
@@ -93,7 +113,8 @@ class DashboardForm extends Component {
 
 const mapStateToProps = reduxState => ({
     info: reduxState.userReducer.info,
-    isProvider: reduxState.userReducer.isProvider
+    isProvider: reduxState.userReducer.isProvider,
+    userLoading: reduxState.userReducer.userLoading
 })
 
-export default connect(mapStateToProps)(DashboardForm)
+export default connect(mapStateToProps, {updateInfo})(DashboardForm)

@@ -48,6 +48,9 @@ app.post('/auth/logout', authController.logout);
 app.get('/auth/me',  authController.me);
 
 //user
+app.put('/api/user/info/:id', userController.updateInfo)
+
+//search
 app.get('/api/search/name', searchController.searchByName)
 app.get('/api/search/city', searchController.searchByLocation)
 

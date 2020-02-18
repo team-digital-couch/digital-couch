@@ -4,6 +4,7 @@ const register = async (req, res) => {
     const db = req.app.get('db');
     const { username, password, isProvider, email } = req.body;
     const defaultAvatar = 'https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png'
+    const defaultInsurance = 'https://res.cloudinary.com/wandsattheready/image/upload/v1582044791/fake_insurance_card_bvkiv8.webp'
 
     const existingUser = await db.user.checkForUser(username);
 
@@ -14,7 +15,7 @@ const register = async (req, res) => {
         const hash = bcrypt.hashSync(password, salt);
 
         const newUser = await db.user.registerUser(username, hash, isProvider);
-        const result = await db.user.createInfoRow(newUser[0].user_id, email, defaultAvatar);
+        const result = await db.user.createInfoRow(newUser[0].user_id, email, defaultAvatar, defaultInsurance);
 
         req.session.user = {
             userId: newUser[0].user_id,
