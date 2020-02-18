@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAEA,AAAA,eAAe,CAAA;EACX,WAAW,EAHE,WAAW;CAI3B",
     "sources": [
         "ProviderNotes.scss"
     ],

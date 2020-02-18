@@ -60,21 +60,24 @@ export default function reducer(state=initialState, action){
             return state
         case `${ADD_PROVIDER_NOTES}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                provider_notes: payload.data
             }
         case `${ADD_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
             return state
         case `${EDIT_PROVIDER_NOTES}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                provider_notes: payload.data
             }
         case `${EDIT_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
             return state
         case `${DELETE_PROVIDER_NOTES}_FULFILLED`:
             return{
-                ...state
+                ...state,
+                provider_notes: payload.data
             }
         case `${DELETE_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)

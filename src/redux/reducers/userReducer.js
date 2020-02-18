@@ -87,7 +87,7 @@ export function getClients() {
     }
 }
 
-export function updateInfo(updatedInfo)
+// export function updateInfo(updatedInfo)
 
 //reducer
 export default function reducer(state = initialState, action){
