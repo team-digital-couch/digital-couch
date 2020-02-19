@@ -69,8 +69,8 @@ app.delete('/api/connections/:id', connectionController.delete);
 
 //journal
 app.post('/api/journal', addJournal);
-app.get('/api/journal', getJournals);
-app.get('/api/journal/:id', getJournal);
+// app.get('/api/journal', getJournals);
+app.get('/api/journal/:id', getJournals);
 app.put('/api/journal/:id', editJournal);
 app.delete('/api/journal/:id', deleteJournal);
 

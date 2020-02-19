@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./Journal.css";
 import {getJournal, getJournals, deleteJournal} from '../../redux/reducers/journalReducer';
 import {getMe} from '../../redux/reducers/userReducer';
+import "./Journal.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -19,7 +19,8 @@ class Journal extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getJournals();
+        // this.props.getJournals();
+        this.props.getJournals(this.props.userId);
         this.props.getMe();
     }
 
@@ -33,6 +34,7 @@ class Journal extends React.Component{
       }
 
     render(){
+        console.log(this.props.journals)
         let journalId = this.state.journalId;
         let filteredJournal = this.props.journals.filter(journal => journal.id == journalId).map(journal => {
             return(
@@ -73,7 +75,8 @@ const mapStateToProps = (reduxState) => {
     return{
         journal: reduxState.journalReducer.journal,
         journals: reduxState.journalReducer.journals,
-        events: reduxState.journalReducer.events
+        events: reduxState.journalReducer.events,
+        userId: reduxState.userReducer.userId
     }
 }
 

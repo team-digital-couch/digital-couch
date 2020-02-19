@@ -16,11 +16,11 @@ module.exports = {
 
     addProviderNotes: async (req, res) => {
         const db = req.app.get('db');
-        const {client_id, time, content} = req.body;
+        const {clientId, time, content} = req.body;
         // const {client_id} = req.query;
         const provider_id = req.session.user.userId;
         try{
-            const newProviderNotes = await db.providerNotes.addProviderNotes(provider_id, client_id, time, content);
+            const newProviderNotes = await db.providerNotes.addProviderNotes(provider_id, clientId, time, content);
             res.status(200).json(newProviderNotes);
         }catch(err){
             res.status(500).json({message: 'could not add Provider Note'})
