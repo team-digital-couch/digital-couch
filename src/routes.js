@@ -6,6 +6,7 @@ import Timeline from './components/Timeline/Timeline';
 import Journal from './components/Journal/Journal';
 import AddJournal from './components/AddJournal/AddJournal';
 import Dashboard from './components/Dashboard/Dashboard';
+import ProviderNotes from './components/ProviderNotes/ProviderNotes';
 
 
 
@@ -16,6 +17,7 @@ export default (
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/journal' component={Journal} />
         <Route path='/addJournal' component={AddJournal} />
+        <Route path='/notes' component={ProviderNotes}/>
         <Route path='/timeline' component={Timeline} />
         <Route path='/clientinfo/:id' component={Dashboard} />
     </Switch>

@@ -7,7 +7,7 @@ const initialState = {
     username: '',
     isProvider: false,
     avatar: '',
-    selectedClient: 0,
+    selectedClient: 3,
     info: {},
     clients: [],
     userLoading: false

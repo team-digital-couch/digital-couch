@@ -4,8 +4,7 @@ import {toast} from 'react-toastify';
 //initial state
 
 const initialState = {
-    client_id: null,
-    provider_notes: []
+    providerNotes: []
 }
 
 //constants
@@ -17,30 +16,31 @@ const DELETE_PROVIDER_NOTES = "DELETE_PROVIDER_NOTES";
 
 //functions
 
-export const getProviderNotes = () => {
+export const getProviderNotes = (clientId) => {
+    console.log('hit', clientId)
     return{
-        action: GET_PROVIDER_NOTES,
-        payload: axios.get('/api/notes')
+        type: GET_PROVIDER_NOTES,
+        payload: axios.get(`/api/notes?clientId=${clientId}`)
     }
 };
 
 export const addProviderNotes = () => {
     return{
-        action: ADD_PROVIDER_NOTES,
+        type: ADD_PROVIDER_NOTES,
         payload: axios.post('/api/notes')
     }
 };
 
 export const editProviderNotes = (id) => {
     return{
-        action: EDIT_PROVIDER_NOTES,
+        type: EDIT_PROVIDER_NOTES,
         payload: axios.put(`/api/notes/${id}`)
     }
 };
 
 export const deleteProviderNotes = (id) => {
     return{
-        action: DELETE_PROVIDER_NOTES,
+        type: DELETE_PROVIDER_NOTES,
         payload: axios.delete(`/api/notes/${id}`)
     }
 };
@@ -49,11 +49,13 @@ export const deleteProviderNotes = (id) => {
 
 export default function reducer(state=initialState, action){
     const {type, payload} = action;
+    console.log('reducer hit', action)
     switch(type){
         case `${GET_PROVIDER_NOTES}_FULFILLED`:
+
             return{
                 ...state,
-                provider_notes: payload.data
+                providerNotes: payload.data
             }
         case `${GET_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
@@ -61,7 +63,7 @@ export default function reducer(state=initialState, action){
         case `${ADD_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state,
-                provider_notes: payload.data
+                providerNotes: payload.data
             }
         case `${ADD_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
@@ -69,7 +71,7 @@ export default function reducer(state=initialState, action){
         case `${EDIT_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state,
-                provider_notes: payload.data
+                providerNotes: payload.data
             }
         case `${EDIT_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
@@ -77,7 +79,7 @@ export default function reducer(state=initialState, action){
         case `${DELETE_PROVIDER_NOTES}_FULFILLED`:
             return{
                 ...state,
-                provider_notes: payload.data
+                providerNotes: payload.data
             }
         case `${DELETE_PROVIDER_NOTES}_REJECTED`:
             toast.error(payload.response.data.message)
