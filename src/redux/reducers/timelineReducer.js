@@ -21,7 +21,7 @@ export const getTimelines = (clientId = undefined) => {
     if(clientId) {
         return {
             type: GET_TIMELINES,
-            payload: axios.get(`/api/timelines?clientId=${clientId}`)
+            payload: axios.get(`/api/timeline?clientId=${clientId}`)
         }
     } else {
         return {
