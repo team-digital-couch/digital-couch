@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {addJournal, getJournals} from '../../redux/reducers/journalReducer';
-import './AddJournal.css'
+import {toast} from 'react-toastify';
+import {getMe} from '../../redux/reducers/userReducer';
+import './AddJournal.css';
 
 class AddJournal extends React.Component{
     constructor(){
@@ -10,7 +12,7 @@ class AddJournal extends React.Component{
         this.state = {
             title: '',
             content: '',
-            id: 2
+            // id: 2
         }
     }
 
@@ -23,12 +25,12 @@ class AddJournal extends React.Component{
             start: new Date(),
             end: new Date(),
             title: this.state.title,
-            id: this.state.id
+            id: this.props.userId
         }
 
         const dbEvent = {
             //need to get user_id off of session
-            user_id: 1,
+            user_id: this.props.userId,
             start_date: new Date(),
             end_date: new Date(),
             content: this.state.content,
@@ -37,8 +39,9 @@ class AddJournal extends React.Component{
 
         this.props.events.push(calendarEvent);
         this.props.addJournal(dbEvent);
-        this.setState({id: this.state.id +=1});
-        // console.log(this.props.events);
+        // this.setState({id: this.state.id +=1});
+        console.log(typeof this.props.userId)
+        toast.success('New Journal Entry Added')
     }
 
     render(){
@@ -56,8 +59,9 @@ class AddJournal extends React.Component{
 const mapStateToProps = (reduxState) => {
     return{
         events: reduxState.journalReducer.events,
+        userId: reduxState.userReducer.userId
     }
 }
 
 
-export default connect (mapStateToProps, {addJournal, getJournals})(AddJournal);
+export default connect (mapStateToProps, {addJournal, getJournals, getMe})(AddJournal);

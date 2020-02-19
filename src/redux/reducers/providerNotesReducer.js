@@ -24,10 +24,10 @@ export const getProviderNotes = (clientId) => {
     }
 };
 
-export const addProviderNotes = () => {
+export const addProviderNotes = (newNote) => {
     return{
         type: ADD_PROVIDER_NOTES,
-        payload: axios.post('/api/notes')
+        payload: axios.post('/api/notes', newNote)
     }
 };
 

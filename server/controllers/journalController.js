@@ -1,8 +1,27 @@
 module.exports = {
+    // getJournals: async (req, res) => {
+    //     const db = req.app.get('db');
+    //     try {
+    //         const journals = await db.journal.getJournals();
+    //         const updatedJournals = journals.map(journal => ({
+    //             id: journal.id,
+    //             user_id: journal.user_id,
+    //             start: journal.start_date,
+    //             end: journal.end_date,
+    //             content: journal.content,
+    //             title: journal.title
+    //         }))
+    //         res.status(200).json(updatedJournals);
+    //     }catch(err){
+    //         res.status(500).json({message: 'could not get Journals'})
+    //     }
+    // },
     getJournals: async (req, res) => {
         const db = req.app.get('db');
+        let {id} = req.params;
+        console.log(id);
         try {
-            const journals = await db.journal.getJournals();
+            const journals = await db.journal.getJournals(id);
             const updatedJournals = journals.map(journal => ({
                 id: journal.id,
                 user_id: journal.user_id,
@@ -11,6 +30,7 @@ module.exports = {
                 content: journal.content,
                 title: journal.title
             }))
+            console.log('journals', journals)
             res.status(200).json(updatedJournals);
         }catch(err){
             res.status(500).json({message: 'could not get Journals'})

@@ -7,7 +7,7 @@ const initialState = {
     username: '',
     isProvider: false,
     avatar: '',
-    selectedClient: 3,
+    selectedClient: 0,
     info: {},
     clients: [],
     userLoading: false,
@@ -74,7 +74,7 @@ export function getUserInfo(id = 0){
     if(!id) {
         return {
             type: GET_USER_INFO,
-            payload: axios.get('/api/info?clientId')
+            payload: axios.get('/api/info')
         }
     } else {
         return {

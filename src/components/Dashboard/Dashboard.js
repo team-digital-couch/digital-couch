@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getUserInfo, getClients, selectClient, clearClient, approveConnection} from '../../redux/reducers/userReducer';
 import DashboardForm from '../DashboardForm/DashboardForm'
+import './Dashboard.css'
 
 class Dashboard extends Component {
     constructor() {
@@ -18,6 +19,7 @@ class Dashboard extends Component {
 
     componentDidUpdate(prevProps) {
         if(!this.props.userLoading && prevProps.userLoading) {
+            console.log('selectedClient', this.props.selectedClient)
             if(this.props.selectedClient) {
                 this.props.getUserInfo(this.props.selectClient)
             } else {
@@ -65,7 +67,7 @@ class Dashboard extends Component {
                     if(this.props.isProvider && v == 'insurance_card') break;
                     return (
                         <div key={i}>
-                            <img src={this.props.userInfo[v]} alt={v} /> 
+                            <img id='user-pic' src={this.props.userInfo[v]} alt={v} /> 
                         </div>
                     )
                 case 'billing_address':
@@ -99,7 +101,7 @@ class Dashboard extends Component {
         console.log('clients here', clients)
 
         return (
-            <div>
+            <div id='whole-page'>
                 {this.state.showForm ? <DashboardForm closeForm={this.toggleForm} /> : (
                     <div>
                         {this.props.selectedClient ? <button onClick={this.unsetClient}>Back</button> : null }<button onClick={() => this.props.history.push('/search')}>Search for connections</button>

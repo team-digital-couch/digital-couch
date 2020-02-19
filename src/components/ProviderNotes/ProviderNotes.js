@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getProviderNotes, addProviderNotes, deleteProviderNotes} from '../../redux/reducers/providerNotesReducer';
 import {getMe} from '../../redux/reducers/userReducer';
-import './ProviderNotes.css'
+import {toast} from 'react-toastify';
+import './ProviderNotes.css';
 
 class ProviderNotes extends React.Component{
     constructor(){
         super()
-        this.state = {}
+        this.state = {
+            content: ''
+        }
     }
 
     componentDidMount(){
@@ -19,10 +22,27 @@ class ProviderNotes extends React.Component{
         this.props.deleteProviderNotes(id);
     }
 
+    inputChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    addProviderNotes = () => {
+        const newNote = {
+            clientId: this.props.selectedClient,
+            time: new Date(),
+            content: this.state.content
+        }
+        this.props.addProviderNotes(newNote)
+        toast.success('New Note Added')
+    }
+
     render(){
-        console.log(this.props.providerNotes)
+        console.log(this.props.selectedClient)
         return(
             <div>
+                <section>Add Provider Note</section>
+                <textarea name='content' placeholder='Add a new Note' onChange={this.inputChange}></textarea>
+                <button onClick={this.addProviderNotes}>Add</button>
                 <div id='all-notes'>{this.props.providerNotes.map(notes => {
                     return(
                         <div className='note-container' key={notes.id}>

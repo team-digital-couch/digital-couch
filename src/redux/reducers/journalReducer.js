@@ -5,14 +5,7 @@ import {toast} from 'react-toastify';
 
 const initialState = {
     user_id: null,
-    events: [
-    //     {
-    //     start: new Date(),
-    //     end: new Date(),
-    //     title: "Blah",
-    //     id: 1
-    //   }
-    ],
+    events: [],
     journals: []
 }
 
@@ -26,10 +19,10 @@ const DELETE_JOURNAL = "DELETE_JOURNAL";
 
 //functions
 
-export const getJournals = () => {
+export const getJournals = (id) => {
     return{
         type: GET_JOURNALS,
-        payload: axios.get('/api/journal')
+        payload: axios.get(`/api/journal/${id}`)
     }
 };
 
