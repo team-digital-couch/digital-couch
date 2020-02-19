@@ -55,7 +55,7 @@ app.get('/api/search/name', searchController.searchByName)
 app.get('/api/search/city', searchController.searchByLocation)
 
 //dashboard
-app.put('/api/info/:id');
+app.put('/api/info/:id', userController.updateInfo);
 app.get('/api/info', userController.read);
 
 //notifications
