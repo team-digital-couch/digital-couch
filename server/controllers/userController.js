@@ -4,7 +4,7 @@ module.exports = {
         const {clientId} = req.query
 
         // console.log(clientId, req.session.user)
-
+        console.log(clientId)
         if(clientId) {
             try {
                 const clientInfo = await db.user.getClientInfo(clientId)

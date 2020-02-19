@@ -33,8 +33,7 @@ class ProviderNotes extends React.Component{
             content: this.state.content
         }
         this.props.addProviderNotes(newNote)
-        // alert('New Note added')
-        toast.error('New Note Added')
+        toast.success('New Note Added')
     }
 
     render(){

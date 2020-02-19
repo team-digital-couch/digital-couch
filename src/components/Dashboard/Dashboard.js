@@ -18,6 +18,7 @@ class Dashboard extends Component {
 
     componentDidUpdate(prevProps) {
         if(!this.props.userLoading && prevProps.userLoading) {
+            console.log('selectedClient', this.props.selectedClient)
             if(this.props.selectedClient) {
                 this.props.getUserInfo(this.props.selectClient)
             } else {

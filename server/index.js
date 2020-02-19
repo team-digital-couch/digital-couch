@@ -6,7 +6,7 @@ const massive = require('massive');
 const session = require('express-session');
 
 //controllers
-const {getJournal, getJournals, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
+const {getJournals, addJournal, editJournal, deleteJournal} = require('./controllers/journalController');
 const {getProviderNotes, addProviderNotes, editProviderNotes, deleteProviderNotes} = require('./controllers/providerNotesController');
 const timelineController = require('./controllers/timelineController')
 const timelineEventController = require('./controllers/timelineEventController')

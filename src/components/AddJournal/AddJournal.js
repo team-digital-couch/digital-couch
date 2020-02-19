@@ -41,7 +41,7 @@ class AddJournal extends React.Component{
         this.props.addJournal(dbEvent);
         // this.setState({id: this.state.id +=1});
         console.log(typeof this.props.userId)
-        toast.error('New Journal Entry Added')
+        toast.success('New Journal Entry Added')
     }
 
     render(){
