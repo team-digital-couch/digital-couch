@@ -22,7 +22,9 @@ function App(props) {
         {props.location.pathname == '/' || props.location.pathname == '/register' ? null : <Header />}
         <div className='main-container'>
           {props.location.pathname == '/' || props.location.pathname == '/register' ? null : <NavBar />}
-          {routes}
+          <div className='routes-container'>
+            {routes}
+          </div>
         </div>
     </div>
   );

@@ -19,3 +19,10 @@
     height: calc(100% - 100px);
     width: 100%;
 }
+
+.routes-container {
+    overflow-y: auto;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}

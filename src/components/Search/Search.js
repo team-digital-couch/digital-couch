@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import toast from 'react-toastify'
+import {toast} from 'react-toastify'
 
 class Search extends Component {
     constructor() {

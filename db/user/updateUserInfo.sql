@@ -14,4 +14,5 @@ SET first_name = $2,
     zipcode = $14,
     hours = $15,
     bio = $16
-WHERE id = $1;
+WHERE id = $1
+RETURNING *;

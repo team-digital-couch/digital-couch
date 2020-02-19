@@ -183,13 +183,14 @@ export default function reducer(state = initialState, action){
                 userLoading: true
             }
         case `${UPDATE_INFO}_FULFILLED`:
-            toast.success(payload.data.message)
+            toast.success('Changes saved!')
             return {
                 ...state,
+                info: payload.data[0],
                 userLoading: false
             }
         case `${UPDATE_INFO}_REJECTED`:
-            toast.error(payload.error.data.message)
+            toast.error(payload.response.data.message)
             return state
         default: return state;
     }

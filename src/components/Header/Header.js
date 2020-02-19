@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {getMe} from '../../redux/reducers/userReducer'
+import {getMe, logoutUser} from '../../redux/reducers/userReducer'
 import logo from '../../digital-couch-logo.png'
 import './Header.css'
 
@@ -9,7 +9,7 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            showModal: false
         }
     }
 
@@ -23,6 +23,15 @@ class Header extends Component {
         }
     }
 
+    toggleModal = () => {
+        this.setState({showModal: !this.state.showModal})
+    }
+
+    logout = () => {
+        this.props.logoutUser()
+        this.props.history.push('/')
+    }
+
     render() {
         return (
             <div className='header-container'>
@@ -32,7 +41,10 @@ class Header extends Component {
                 </div>
                 <div className='header-menu-container'>
                     <i className='far fa-bell' />
-                    <img src={this.props.avatar} alt='Avatar' />
+                    <img src={this.props.avatar} alt='Avatar' onClick={this.toggleModal} />
+                    <div className={`modal${this.state.showModal ? '__show' : '__hide'}`}>
+                        <button onClick={this.logout}>Logout</button>
+                    </div>
                     {/* <img src='https://res.cloudinary.com/wandsattheready/image/upload/v1581526662/digital-couch/default_avatar_mi2yrs.png' alt='avatar' /> */}
                 </div>
             </div>
@@ -47,4 +59,4 @@ const checkout = state => ({
     userLoading: state.userReducer.userLoading
 })
 
-export default connect(checkout, {getMe})(withRouter(Header))
+export default connect(checkout, {getMe, logoutUser})(withRouter(Header))
