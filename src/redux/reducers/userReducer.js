@@ -7,7 +7,7 @@ const initialState = {
     username: '',
     isProvider: false,
     avatar: '',
-    selectedClient: 0,
+    selectedClient: 3,
     info: {},
     clients: [],
     userLoading: false
@@ -86,6 +86,7 @@ export function getClients() {
         payload: axios.get('/api/connections')
     }
 }
+
 
 export function updateInfo(id, updatedInfo) {
     return {

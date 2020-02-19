@@ -37,7 +37,7 @@ class AddJournal extends React.Component{
 
         this.props.events.push(calendarEvent);
         this.props.addJournal(dbEvent);
-        this.state.id +=1;
+        this.setState({id: this.state.id +=1});
         // console.log(this.props.events);
     }
 
