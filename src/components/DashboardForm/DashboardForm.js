@@ -82,7 +82,7 @@ class DashboardForm extends Component {
                 <button onClick={() => this.handleUploadClick('avatar')}>Select Avatar Image</button>
                 <input name='first_name' placeholder='First Name' onChange={this.handleInputChange} value={this.state.first_name} />
                 <input name='last_name' placeholder='Last Name' onChange={this.handleInputChange} value={this.state.last_name} />
-                <input name='prounous' placeholder='Pronouns (ex. "she/her")' onChange={this.handleInputChange} value={this.state.pronouns} />
+                <input name='pronouns' placeholder='Pronouns (ex. "she/her")' onChange={this.handleInputChange} value={this.state.pronouns} />
                 {this.props.isProvider ? null : (
                     <div>
                         <input type='hidden' name='insurance_card' onChange={this.handleInputChange} value={this.state.insurance_card} />

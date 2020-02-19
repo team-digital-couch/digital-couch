@@ -4,7 +4,7 @@ module.exports = {
         const {name} = req.query
 
         try {
-            const results = await db.users.searchByName(`%${name}%`)
+            const results = await db.user.searchByName(`%${name}%`)
             res.status(200).json(results)
         } catch(err) {
             console.log('Search by name', err)
@@ -17,7 +17,7 @@ module.exports = {
         const {city} = req.query
 
         try {
-            const results = await db.users.searchByLocation(`%${city}%`)
+            const results = await db.user.searchByLocation(`%${city}%`)
             res.status(200).json(results)
         } catch(err) {
             console.log('Search by city', err)

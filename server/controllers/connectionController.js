@@ -5,7 +5,7 @@ module.exports = {
         const [clientId, providerId] = req.session.user.isProvider ? [req.body.connId, req.session.user.userId] : [req.session.user.userId, req.body.connId]
 
         try {
-            const result = await db.connections.create(providerId, clientId)
+            const result = await db.connection.create(providerId, clientId)
             res.status(200).json({message: 'Connection request sent'})
         } catch(err) {
             console.log('Create connection', err)
@@ -17,7 +17,7 @@ module.exports = {
         const db = req.app.get('db')
 
         try {
-            const connections = await db.connections.read(req.session.user.userId)
+            const connections = await db.connection.read(req.session.user.userId)
             res.status(200).json(connections)
         } catch(err) {
             console.log('Get connections', err)
