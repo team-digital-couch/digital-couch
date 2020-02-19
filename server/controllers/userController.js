@@ -28,12 +28,13 @@ module.exports = {
     },
     updateInfo: async (req, res) => {
         const db = req.app.get('db')
-        const id = req.params
+        const {id} = req.params
         const {first_name, last_name, pronouns, avatar, insurance_card, phone, email, billing_address, billing_city, billing_zipcode, address, city, zipcode, hours, bio} = req.body
 
+        console.log(id)
         try {
             const result = await db.user.updateUserInfo(id, first_name, last_name, pronouns, avatar, insurance_card, phone, email, billing_address, billing_city, billing_zipcode, address, city, zipcode, hours, bio)
-            res.status(200).json({message: 'Information updated!'})
+            res.status(200).json(result)
         } catch(err) {
             console.log('Update User Info', err)
             res.status(500).json({message: 'Could not update information'})

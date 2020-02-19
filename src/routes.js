@@ -7,6 +7,7 @@ import Journal from './components/Journal/Journal';
 import AddJournal from './components/AddJournal/AddJournal';
 import Dashboard from './components/Dashboard/Dashboard';
 import ProviderNotes from './components/ProviderNotes/ProviderNotes';
+import Search from './components/Search/Search'
 
 
 
@@ -20,5 +21,6 @@ export default (
         <Route path='/notes' component={ProviderNotes}/>
         <Route path='/timeline' component={Timeline} />
         <Route path='/clientinfo/:id' component={Dashboard} />
+        <Route path='/search' component={Search} />
     </Switch>
 )

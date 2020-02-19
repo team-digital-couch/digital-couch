@@ -41,7 +41,40 @@ class Dashboard extends Component {
     }
 
     render() {
-        const info = Object.keys(this.props.userInfo).map((v, i) => <div key={i}><h1>{v}: </h1><span>{this.props.userInfo[v]}</span><br /></div>)
+        const info = Object.keys(this.props.userInfo).map((v, i) => {
+            switch(v) {
+                case 'id':
+                case 'user_id':
+                    break;
+                case 'avatar':
+                case 'insurance_card':
+                    if(this.props.isProvider && v == 'insurance_card') break;
+                    return (
+                        <div>
+                            <img src={this.props.userInfo[v]} alt={v} /> 
+                        </div>
+                    )
+                case 'provider_name':
+                    if(!this.props.userInfo[v]) break;
+                    return (
+                        <div>
+                            <span>{this.props.userInfo[v]}</span><button onClick={this.props.userInfo.pending ? this.approve : this.disconnect}>{this.props.userInfo.pending ? 'Approve' : 'Disconnect'}</button>
+                        </div>
+                    )
+
+                case 'pending':
+                    break;
+                case 'hours':
+                    if(!this.props.isProvider) return null;
+                default:
+                    return (
+                        <div key={i}>
+                            <h1>{v}: </h1><span>{this.props.userInfo[v]}</span><br />
+                        </div>
+                    )
+            }   
+            // )
+        })
         console.log(this.props.userInfo, info)
 
         const clients = this.props.clients ? this.props.clients.map(v => <div className='provider-client' onClick={() => this.setClient(v.id)} key={v.id}>{v.name}</div>) : null
@@ -50,7 +83,7 @@ class Dashboard extends Component {
             <div>
                 {this.state.showForm ? <DashboardForm closeForm={this.toggleForm} /> : (
                     <div>
-                        <button >Back</button>
+                        <button >Back</button><button onClick={() => this.props.history.push('/search')}>Search for connections</button>
                         {info}
                         {clients && !this.props.selectedClient ? clients : null}
                         <button onClick={this.toggleForm}>Edit</button>
