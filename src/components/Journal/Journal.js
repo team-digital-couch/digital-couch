@@ -19,8 +19,11 @@ class Journal extends React.Component{
     }
 
     componentDidMount(){
-        // this.props.getJournals();
-        this.props.getJournals(this.props.userId);
+        if(this.props.selectedClient){
+            this.props.getJournals(this.props.selectedClient)
+        }else{
+            this.props.getJournals(this.props.userId)
+        }
         this.props.getMe();
     }
 
@@ -30,11 +33,9 @@ class Journal extends React.Component{
 
     clickJournal = (event) => {
         this.setState({journalId: event.id})
-        console.log(this.state.journalId)
       }
 
     render(){
-        console.log(this.props.journals)
         let journalId = this.state.journalId;
         let filteredJournal = this.props.journals.filter(journal => journal.id == journalId).map(journal => {
             return(
@@ -63,7 +64,6 @@ class Journal extends React.Component{
                 <section id='journal_display'>
                     <div id='journal_title_date'>
                         <h1>{filteredJournal[0]}</h1>
-                        {/* <h1>{filteredJournal}</h1> */}
                     </div>
                 </section>
             </div>
@@ -76,7 +76,8 @@ const mapStateToProps = (reduxState) => {
         journal: reduxState.journalReducer.journal,
         journals: reduxState.journalReducer.journals,
         events: reduxState.journalReducer.events,
-        userId: reduxState.userReducer.userId
+        userId: reduxState.userReducer.userId,
+        selectedClient: reduxState.userReducer.selectedClient
     }
 }
 
