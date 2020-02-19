@@ -10,7 +10,8 @@ const initialState = {
     selectedClient: 0,
     info: {},
     clients: [],
-    userLoading: false
+    userLoading: false,
+    connectionLoading: false
 }
 
 //const strings
@@ -23,6 +24,8 @@ const CLEAR_CLIENT = 'CLEAR_CLIENT'
 const GET_USER_INFO = 'GET_USER_INFO'
 const GET_CLIENTS = 'GET_CLIENTS'
 const UPDATE_INFO = 'UPDATE_INFO'
+const APPROVE_CONNECTION = 'APPROVE_CONNECTION'
+const REMOVE_CONNECTION = 'REMOVE_CONNECTION'
 
 //functions
 export function registerUser(user){
@@ -67,10 +70,11 @@ export function clearClient() {
 }
 
 export function getUserInfo(id = 0){
+    console.log('client id', id)
     if(!id) {
         return {
             type: GET_USER_INFO,
-            payload: axios.get('/api/info')
+            payload: axios.get('/api/info?clientId')
         }
     } else {
         return {
@@ -91,6 +95,20 @@ export function updateInfo(id, updatedInfo) {
     return {
         type: UPDATE_INFO,
         payload: axios.put(`/api/user/info/${id}`, updatedInfo)
+    }
+}
+
+export const approveConnection = id => {
+    return {
+        type: APPROVE_CONNECTION,
+        payload: axios.put(`/api/connections/${id}`)
+    }
+}
+
+export const removeConnection = id => {
+    return {
+        type: REMOVE_CONNECTION,
+        payload: axios.delete(`/api/connections/${id}`)
     }
 }
 
@@ -162,7 +180,7 @@ export default function reducer(state = initialState, action){
         case CLEAR_CLIENT:
             return {
                 ...state,
-                selectClient: 0
+                selectedClient: 0
             }
         case `${GET_USER_INFO}_FULFILLED`:
             return {
@@ -173,10 +191,14 @@ export default function reducer(state = initialState, action){
             toast.error(payload.response.data.message)
             return state
         case `${GET_CLIENTS}_FULFILLED`:
+            console.log('hit clients', payload.data)
             return {
                 ...state,
                 clients: payload.data
             }
+        case `${GET_CLIENTS}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
         case `${UPDATE_INFO}_PENDING`:
             return {
                 ...state,
@@ -190,6 +212,33 @@ export default function reducer(state = initialState, action){
                 userLoading: false
             }
         case `${UPDATE_INFO}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
+        case `${APPROVE_CONNECTION}_PENDING`:
+            return {
+                ...state,
+                connectionLoading: true
+            }
+        case `${APPROVE_CONNECTION}_FULFILLED`:
+            toast.success('Connection approved!')
+            return {
+                ...state,
+                connectionLoading: false
+            }
+        case `${APPROVE_CONNECTION}_REJECTED`:
+            toast.error(payload.response.data.message)
+            return state
+        case `${REMOVE_CONNECTION}_PENDING`:
+            return {
+                ...state,
+                connectionLoading: true
+            }
+        case `${REMOVE_CONNECTION}_FULFILLED`:
+            return {
+                ...state,
+                connectionLoading: false
+            }
+        case `${REMOVE_CONNECTION}_REJECTED`:
             toast.error(payload.response.data.message)
             return state
         default: return state;

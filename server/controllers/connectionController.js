@@ -27,10 +27,10 @@ module.exports = {
 
     approve: async (req, res) => {
         const db = req.app.get('db')
-        const connection = req.params.connId
+        const connection = req.params.id
 
         try {
-            const result = await db.connection.approve()
+            const result = await db.connection.approve(connection)
             res.status(200).json({message: 'Connection request approved'})
         } catch(err) {
             console.log('Approve connection', err)
@@ -40,7 +40,7 @@ module.exports = {
 
     delete: async (req, res) => {
         const db = req.app.get('db')
-        const connection = req.params.connId
+        const connection = req.params.id
 
         try {
             const result = await db.connection.delete(connection)

@@ -1,4 +1,4 @@
-SELECT u.username, i.*, pc.username AS provider_name, cc.pending FROM user_info AS i
+SELECT u.username, i.*, pc.username AS provider_name, cc.connection_id, cc.pending FROM user_info AS i
 INNER JOIN users AS u
 ON u.user_id = i.user_id
 FULL JOIN connections AS cc

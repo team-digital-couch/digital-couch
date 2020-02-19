@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
-import {getUserInfo, getClients, selectClient, clearClient} from '../../redux/reducers/userReducer';
+import {getUserInfo, getClients, selectClient, clearClient, approveConnection} from '../../redux/reducers/userReducer';
 import DashboardForm from '../DashboardForm/DashboardForm'
 
 class Dashboard extends Component {
@@ -13,9 +13,13 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        // if(!this.props.userLoading && prevProps.userLoading) {
+
+    }
+
+    componentDidUpdate(prevProps) {
+        if(!this.props.userLoading && prevProps.userLoading) {
             if(this.props.selectedClient) {
-                this.props.getUserInfo(this.props.match.params.clientId)
+                this.props.getUserInfo(this.props.selectClient)
             } else {
                 this.props.getUserInfo()
             }
@@ -23,24 +27,34 @@ class Dashboard extends Component {
             if(this.props.isProvider && !this.props.selectedClient) {
                 this.props.getClients()
             }
-        // }
+        }
+        if(!this.props.connectionLoading && prevProps.connectionLoading) {
+            this.props.getUserInfo()
+        }
     }
 
     setClient = id => {
         this.props.selectClient(id)
-        this.props.history.push(`/clientInfo/${id}`)
+        // this.props.history.push(`/clientInfo/${id}`)
+        this.props.getUserInfo(id)
     }
 
     unsetClient = () => {
         this.props.clearClient()
-        this.props.history.push('/dashboard')
+        // this.props.history.push('/dashboard')
+        this.props.getUserInfo()
     }
 
     toggleForm = () => {
         this.setState({showForm: !this.state.showForm})
     }
 
+    approve = () => {
+        this.props.approveConnection(this.props.userInfo.connection_id)
+    }
+
     render() {
+        console.log(this.props.userInfo)
         const info = Object.keys(this.props.userInfo).map((v, i) => {
             switch(v) {
                 case 'id':
@@ -50,19 +64,23 @@ class Dashboard extends Component {
                 case 'insurance_card':
                     if(this.props.isProvider && v == 'insurance_card') break;
                     return (
-                        <div>
+                        <div key={i}>
                             <img src={this.props.userInfo[v]} alt={v} /> 
                         </div>
                     )
+                case 'billing_address':
+                case 'billing_city':
+                case 'billing_zipcode':
+                    if(this.props.isProvider) return null;
                 case 'provider_name':
                     if(!this.props.userInfo[v]) break;
                     return (
-                        <div>
+                        <div key={i}>
                             <span>{this.props.userInfo[v]}</span><button onClick={this.props.userInfo.pending ? this.approve : this.disconnect}>{this.props.userInfo.pending ? 'Approve' : 'Disconnect'}</button>
                         </div>
                     )
-
                 case 'pending':
+                case 'connection_id':
                     break;
                 case 'hours':
                     if(!this.props.isProvider) return null;
@@ -77,16 +95,18 @@ class Dashboard extends Component {
         })
         console.log(this.props.userInfo, info)
 
-        const clients = this.props.clients ? this.props.clients.map(v => <div className='provider-client' onClick={() => this.setClient(v.id)} key={v.id}>{v.name}</div>) : null
+        const clients = this.props.clients ? this.props.clients.map(v => <div className='provider-client' onClick={() => this.setClient(v.client_id)} key={v.connection_id}>{v.username}</div>) : null
+        console.log('clients here', clients)
 
         return (
             <div>
                 {this.state.showForm ? <DashboardForm closeForm={this.toggleForm} /> : (
                     <div>
-                        <button >Back</button><button onClick={() => this.props.history.push('/search')}>Search for connections</button>
+                        {this.props.selectedClient ? <button onClick={this.unsetClient}>Back</button> : null }<button onClick={() => this.props.history.push('/search')}>Search for connections</button>
                         {info}
-                        {clients && !this.props.selectedClient ? clients : null}
-                        <button onClick={this.toggleForm}>Edit</button>
+                        {!this.props.selectedClient ? clients : null}
+                        {/* {clients} */}
+                        {!this.props.selectedClient ? <button onClick={this.toggleForm}>Edit</button> : null}
                     </div>
                 )}
             </div>
@@ -96,9 +116,11 @@ class Dashboard extends Component {
 
 const mapStateToProps = reduxState => ({
     isProvider: reduxState.userReducer.isProvider,
+    clients: reduxState.userReducer.clients,
     selectedClient: reduxState.userReducer.selectedClient,
     userInfo: reduxState.userReducer.info,
-    userLoading: reduxState.userReducer.userLoading
+    userLoading: reduxState.userReducer.userLoading,
+    connectionLoading: reduxState.userReducer.connectionLoading
 })
 
-export default connect(mapStateToProps, {getUserInfo, getClients, selectClient, clearClient})(withRouter(Dashboard))
+export default connect(mapStateToProps, {getUserInfo, getClients, selectClient, clearClient, approveConnection})(withRouter(Dashboard))
