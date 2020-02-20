@@ -18,6 +18,7 @@ const DELETE_TIMELINE = 'DELETE_TIMELINE'
 const DELETE_EVENT = 'DELETE_EVENT'
 
 export const getTimelines = (clientId = undefined) => {
+    console.log(clientId)
     if(clientId) {
         return {
             type: GET_TIMELINES,

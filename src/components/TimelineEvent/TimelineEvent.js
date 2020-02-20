@@ -35,17 +35,17 @@ class TimelineEvent extends Component {
                 {this.props.events.map(v => (
                     <div key={v.id}>
                         <div className='event-delete-container'>
-                            <span className='event-delete-button' onClick={() => this.delete(v.id)}>X</span>
+                            {this.props.selectedClient ? null : <span className='event-delete-button' onClick={() => this.delete(v.id)}>X</span>}
                         </div>
                         <span>Date: {v.isApproximate ? 'Approximately ' : ''}{v.time}</span>
                         <span>Title: {v.title}</span>
                         <span>What happened:</span>
                         <p>{v.content}</p>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        {/* <button>Edit</button> */}
+                        {this.props.selectedClient ? null : <button>Delete</button>}
                     </div>
                 ))}
-                <button onClick={this.showHide}>Add New</button>
+                {this.props.selectedClient ? null : <button onClick={this.showHide}>Add New</button>}
                 {this.state.showForm && <AddTimelineEvent timelineId={this.props.timelineId} />}
             </div>
         )
@@ -53,10 +53,11 @@ class TimelineEvent extends Component {
 }
 
 const checkout = state => {
-    console.log(state)
+    // console.log(state)
     return ({
     isProvider: state.userReducer.isProvider,
-    events: state.timelineReducer.events
+    events: state.timelineReducer.events,
+    selectedClient: state.userReducer.selectedClient
 })}
 
 export default connect(checkout, {deleteEvent})(TimelineEvent)

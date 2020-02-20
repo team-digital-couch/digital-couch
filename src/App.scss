@@ -18,11 +18,13 @@
     display: flex;
     height: calc(100% - 100px);
     width: 100%;
+    box-sizing: border-box;
 }
 
 .routes-container {
-    overflow-y: auto;
+    overflow-y: scroll;
     display: flex;
-    height: 100%;
+    height: height;
     width: 100%;
+    box-sizing: border-box;
 }

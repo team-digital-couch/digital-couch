@@ -64,7 +64,7 @@ class Dashboard extends Component {
                     break;
                 case 'avatar':
                 case 'insurance_card':
-                    if(this.props.isProvider && v == 'insurance_card') break;
+                    if((this.props.isProvider && !this.props.selectedClient) && v == 'insurance_card') break;
                     return (
                         <div key={i}>
                             <img id='user-pic' src={this.props.userInfo[v]} alt={v} /> 
@@ -103,8 +103,8 @@ class Dashboard extends Component {
         return (
             <div id='whole-page'>
                 {this.state.showForm ? <DashboardForm closeForm={this.toggleForm} /> : (
-                    <div>
-                        {this.props.selectedClient ? <button onClick={this.unsetClient}>Back</button> : null }<button onClick={() => this.props.history.push('/search')}>Search for connections</button>
+                    <div className='info-container'>
+                        {this.props.selectedClient ? <button onClick={this.unsetClient}>Back</button> : null }<button className='search-button' onClick={() => this.props.history.push('/search')}>Search for connections</button>
                         {info}
                         {!this.props.selectedClient ? clients : null}
                         {/* {clients} */}

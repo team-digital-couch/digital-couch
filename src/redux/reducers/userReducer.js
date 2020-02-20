@@ -157,7 +157,9 @@ export default function reducer(state = initialState, action){
                 userId: null,
                 username: '',
                 isProvider: false,
-                avatar: ''
+                avatar: '',
+                info: {},
+                selectedClient: 0
             }
         case `${GET_ME}_PENDING`:
             return {

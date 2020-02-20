@@ -16,7 +16,11 @@ class Timeline extends Component {
     }
 
     componentDidMount() {
-        this.props.getTimelines()
+        if(this.props.selectedClient) {
+            this.props.getTimelines(this.props.selectedClient)
+        } else {
+            this.props.getTimelines()
+        }
     }
 
     handleChange = e => {
@@ -55,7 +59,7 @@ class Timeline extends Component {
                         })}
                     </select>
                     <button onClick={this.select} disabled={!this.state.selection}>Select</button>
-                    <button onClick={this.showForm}>Add a timeline</button>
+                    {this.props.selectedClient ? null : <button onClick={this.showForm}>Add a timeline</button>}
                 </div>
                 {this.state.showForm && <AddTimeline closeForm={this.closeForm} />}
                 {this.state.selection && !this.props.eventLoading ? (
@@ -64,8 +68,8 @@ class Timeline extends Component {
                         <span>{selected.start_date}</span>
                         <TimelineEvent timelineId={selected.id} />
                         <span>{selected.end_date}</span>
-                        <button>Edit</button>
-                        <button onClick={() => this.delete(selected.id)}>Delete</button>
+                        {/* {this.props.selectedClient ? null : <button>Edit</button>} */}
+                        {this.props.selectedClient ? null : <button onClick={() => this.delete(selected.id)}>Delete</button>}
                     </div>
                 ) : null}
             </div>
@@ -76,7 +80,8 @@ class Timeline extends Component {
 const checkout = state => ({
     timelines: state.timelineReducer.timelines,
     timelineLoading: state.timelineReducer.timelineLoading,
-    eventLoading: state.timelineReducer.eventLoading
+    eventLoading: state.timelineReducer.eventLoading,
+    selectedClient: state.userReducer.selectedClient
 })
 
 export default connect(checkout, {getTimelines, getEvents, deleteTimeline})(Timeline)
