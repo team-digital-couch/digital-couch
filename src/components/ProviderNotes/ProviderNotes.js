@@ -5,7 +5,7 @@ import {getMe} from '../../redux/reducers/userReducer';
 import {toast} from 'react-toastify';
 import './ProviderNotes.css';
 
-class ProviderNotes extends React.Component{
+export class ProviderNotes extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -37,17 +37,18 @@ class ProviderNotes extends React.Component{
     }
 
     render(){
-        console.log(this.props.selectedClient)
+        // console.log(this.props.selectedClient)
         return(
             <div>
-                <section>Add Provider Note</section>
+                <section className='page-title'>Provider Notes</section>
+                <h1 className='provider-notes-subtitle'>{this.props.username}'s Notes for {this.props.client_name}</h1>
                 <textarea name='content' placeholder='Add a new Note' onChange={this.inputChange}></textarea>
                 <button onClick={this.addProviderNotes}>Add</button>
                 <div id='all-notes'>{this.props.providerNotes.map(notes => {
                     return(
                         <div className='note-container' key={notes.id}>
                             <button onClick={() => this.deleteProviderNotes(notes.id)}>X</button>
-                            <section className='note-content' key={notes.content}>{notes.content}</section>
+                            <section className='note-content' >{notes.content}</section>
                         </div>
                     )
                 })}</div>
@@ -60,7 +61,9 @@ const mapStateToProps = (reduxState) => {
     return{
         providerNotes: reduxState.providerNotesReducer.providerNotes,
         isProvider: reduxState.userReducer.isProvider,
-        selectedClient: reduxState.userReducer.selectedClient
+        selectedClient: reduxState.userReducer.selectedClient,
+        username: reduxState.userReducer.username,
+        client_name: reduxState.userReducer.info.username
     }
 }
 

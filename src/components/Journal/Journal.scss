@@ -36,11 +36,12 @@ $header-font: 'Lemonada';
     border: 5px solid black;
     background-color: $soft-violet;
     font-family: $paragraph-font;
+    width: 80vw;
 }
 
 #journal_title_date{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 
