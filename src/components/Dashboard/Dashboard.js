@@ -93,7 +93,7 @@ export class Dashboard extends Component {
                         </div>
                     )
             }   
-            // )
+        
         })
         // console.log(this.props.userInfo, info)
 
