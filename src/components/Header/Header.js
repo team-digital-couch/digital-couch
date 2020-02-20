@@ -5,7 +5,7 @@ import {getMe, logoutUser} from '../../redux/reducers/userReducer'
 import logo from '../../digital-couch-logo.png'
 import './Header.css'
 
-class Header extends Component {
+export class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -41,7 +41,7 @@ class Header extends Component {
                 </div>
                 <div className='header-menu-container'>
                     <i className='far fa-bell' />
-                    <img src={this.props.avatar} alt='Avatar' onClick={this.toggleModal} />
+                    <img className='header-avatar' src={this.props.avatar} alt='Avatar' onClick={this.toggleModal} />
                     <div className={`modal${this.state.showModal ? '__show' : '__hide'}`}>
                         <button onClick={this.logout}>Logout</button>
                     </div>
