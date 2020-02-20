@@ -10,7 +10,7 @@ import "./Journal.css";
 
 const localizer = momentLocalizer(moment);
 
-class Journal extends React.Component{
+export class Journal extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -73,7 +73,7 @@ class Journal extends React.Component{
 
 const mapStateToProps = (reduxState) => {
     return{
-        journal: reduxState.journalReducer.journal,
+        // journal: reduxState.journalReducer.journal,
         journals: reduxState.journalReducer.journals,
         events: reduxState.journalReducer.events,
         userId: reduxState.userReducer.userId,

@@ -40,7 +40,7 @@ class ProviderNotes extends React.Component{
         console.log(this.props.selectedClient)
         return(
             <div>
-                <section>Add Provider Note</section>
+                <section>Provider Notes</section>
                 <textarea name='content' placeholder='Add a new Note' onChange={this.inputChange}></textarea>
                 <button onClick={this.addProviderNotes}>Add</button>
                 <div id='all-notes'>{this.props.providerNotes.map(notes => {
