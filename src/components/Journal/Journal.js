@@ -41,9 +41,9 @@ class Journal extends React.Component{
             return(
                 <section>
                     <div id='journal_title_date'>
-                        <h1>{journal.title}</h1>
-                        <h1>{journal.start}</h1>
-                        <button onClick={() => this.deleteJournal(journal.id)}>X</button>
+                        <h1>{journal.title} </h1>
+                        <h1> {journal.start}</h1>
+                        {this.props.isProvider ? null : <button onClick={() => this.deleteJournal(journal.id)}>X</button>}
                     </div>
                     <h2>{journal.content}</h2>
                 </section>
@@ -59,7 +59,7 @@ class Journal extends React.Component{
                         events={this.props.events}
                         onSelectEvent={this.clickJournal}
                     />
-                    <Link to='/addJournal'>Add a new Journal entry</Link>
+                    {this.props.isProvider ? null : <Link to='/addJournal'>Add a new Journal entry</Link>}
                 </section>
                 <section id='journal_display'>
                     <div id='journal_title_date'>
@@ -77,7 +77,8 @@ const mapStateToProps = (reduxState) => {
         journals: reduxState.journalReducer.journals,
         events: reduxState.journalReducer.events,
         userId: reduxState.userReducer.userId,
-        selectedClient: reduxState.userReducer.selectedClient
+        selectedClient: reduxState.userReducer.selectedClient,
+        isProvider: reduxState.userReducer.isProvider
     }
 }
 
