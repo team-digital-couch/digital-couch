@@ -5,7 +5,7 @@ import {getUserInfo, getClients, selectClient, clearClient, approveConnection} f
 import DashboardForm from '../DashboardForm/DashboardForm'
 import './Dashboard.css'
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
@@ -78,7 +78,7 @@ class Dashboard extends Component {
                     if(!this.props.userInfo[v]) break;
                     return (
                         <div key={i}>
-                            <span>{this.props.userInfo[v]}</span><button onClick={this.props.userInfo.pending ? this.approve : this.disconnect}>{this.props.userInfo.pending ? 'Approve' : 'Disconnect'}</button>
+                            <span >{this.props.userInfo[v]}</span><button onClick={this.props.userInfo.pending ? this.approve : this.disconnect}>{this.props.userInfo.pending ? 'Approve' : 'Disconnect'}</button>
                         </div>
                     )
                 case 'pending':
@@ -88,17 +88,17 @@ class Dashboard extends Component {
                     if(!this.props.isProvider) return null;
                 default:
                     return (
-                        <div key={i}>
-                            <h1>{v}: </h1><span>{this.props.userInfo[v]}</span><br />
+                        <div className='user-info-item' key={i}>
+                            <h1>{v}: </h1><span id={v}>{this.props.userInfo[v]}</span><br />
                         </div>
                     )
             }   
         
         })
-        console.log(this.props.userInfo, info)
+        // console.log(this.props.userInfo, info)
 
         const clients = this.props.clients ? this.props.clients.map(v => <div className='provider-client' onClick={() => this.setClient(v.client_id)} key={v.connection_id}>{v.username}</div>) : null
-        console.log('clients here', clients)
+        // console.log('clients here', clients)
 
         return (
             <div id='whole-page'>
