@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {deleteEvent} from '../../redux/reducers/timelineReducer'
 import AddTimelineEvent from '../AddTimelineEvent/AddTimelineEvent'
 
-class TimelineEvent extends Component {
+export class TimelineEvent extends Component {
     constructor() {
         super()
 
@@ -33,14 +33,14 @@ class TimelineEvent extends Component {
         return (
             <div className='event-container'>
                 {this.props.events.map(v => (
-                    <div key={v.id}>
+                    <div className='event' key={v.id}>
                         <div className='event-delete-container'>
                             {this.props.selectedClient ? null : <span className='event-delete-button' onClick={() => this.delete(v.id)}>X</span>}
                         </div>
                         <span>Date: {v.isApproximate ? 'Approximately ' : ''}{v.time}</span>
-                        <span>Title: {v.title}</span>
+                        <span className='event-title'>Title: {v.title}</span>
                         <span>What happened:</span>
-                        <p>{v.content}</p>
+                        <p className='event-content'>{v.content}</p>
                         {/* <button>Edit</button> */}
                         {this.props.selectedClient ? null : <button>Delete</button>}
                     </div>
