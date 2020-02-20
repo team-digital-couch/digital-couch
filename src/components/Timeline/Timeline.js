@@ -4,7 +4,7 @@ import {getTimelines, getEvents, deleteTimeline} from '../../redux/reducers/time
 import TimelineEvent from '../TimelineEvent/TimelineEvent'
 import AddTimeline from '../AddTimeline/AddTimeline'
 
-class Timeline extends Component {
+export class Timeline extends Component {
     constructor() {
         super()
 
