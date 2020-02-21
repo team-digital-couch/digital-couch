@@ -1,0 +1,85 @@
+#dashboard-form-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-top: 200px;
+}
+
+#avatar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#avatar-img {
+  height: 200px;
+  width: 200px;
+}
+
+#avatar-picker {
+  padding: 7px 15px;
+  border-radius: 20px;
+  background-color: #9fd8b0;
+  color: black;
+  height: 50px;
+}
+
+#insurance-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#insurance-button {
+  padding: 7px 15px;
+  border-radius: 20px;
+  background-color: #9fd8b0;
+  color: black;
+  height: 50px;
+}
+
+#save-cancel-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.save-cancel-buttons {
+  padding: 7px 15px;
+  border-radius: 20px;
+  background-color: #9fd8b0;
+  color: black;
+}
+/*# sourceMappingURL=DashboardForm.css.map */

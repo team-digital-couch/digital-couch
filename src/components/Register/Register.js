@@ -47,7 +47,7 @@ class Register extends Component {
     render() {
         return (
             <div className='register-container'>
-                <img src={logo} alt='Logo' className='register-logo' />
+                <img id='reg-logo' src={logo} alt='Logo' className='register-logo' />
                 <div className='register-box'>
                     <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
                     <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>

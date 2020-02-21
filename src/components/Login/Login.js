@@ -39,12 +39,12 @@ class Login extends Component {
     render() {
         return (
             <div className='login-container'>
-                <img src={logo} alt='Logo' className='login-logo' />
+                <img id='login-logo' src={logo} alt='Logo' className='login-logo' />
                 <div className='login-box'>
                     <input name='username' placeholder='Username' onChange={this.handleInputChange} value={this.state.username}></input>
                     <input type='password' name='password' placeholder='Password' onChange={this.handleInputChange} value={this.state.password}></input>
                     {/* <Link to='/dashboard'><button onClick={this.loginLocal}>Login</button></Link> */}
-                    <button onClick={this.loginLocal}>Login</button>
+                    <button id='login-button' onClick={this.loginLocal}>Login</button>
                     <p>Need an Account? Register <Link to='/register'>Here</Link></p>
                 </div>
             </div>

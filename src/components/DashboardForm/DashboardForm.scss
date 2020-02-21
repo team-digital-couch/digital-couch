@@ -1,0 +1,54 @@
+$mossy-green: rgb(159, 216, 176);
+@mixin buttons() {
+    padding: 7px 15px;
+    border-radius: 20px;
+    background-color: $mossy-green;
+    color: black;
+  }
+
+
+#dashboard-form-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin-top: 200px;
+}
+
+#avatar-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#avatar-img{
+    height: 200px;
+    width: 200px;
+}
+
+#avatar-picker{
+    @include buttons();
+    height: 50px;
+}
+
+#insurance-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#insurance-button{
+    @include buttons();
+    height: 50px;
+}
+
+#save-cancel-container{
+    display: flex;
+    justify-content: center;
+}
+
+.save-cancel-buttons{
+    @include buttons();
+}
