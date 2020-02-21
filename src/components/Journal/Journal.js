@@ -43,7 +43,7 @@ export class Journal extends React.Component{
                     <div id='journal_title_date'>
                         <h1 className='journal_title' >{journal.title} </h1>
                         <h1 className='journal_start_date'> {journal.start}</h1>
-                        {this.props.isProvider ? null : <button onClick={() => this.deleteJournal(journal.id)}>X</button>}
+                        {this.props.isProvider ? null : <button id='delete-button' onClick={() => this.deleteJournal(journal.id)}>X</button>}
                     </div>
                     <h2 className='journal_content'>{journal.content}</h2>
                 </section>

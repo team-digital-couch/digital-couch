@@ -44,8 +44,9 @@ $header-font: 'Lemonada';
     justify-content: space-between;
 }
 
-
-// doesn't work
-// .rbc-day-bc-today{
-//     background-color: $eggshell-white;
-// }
+#delete-button{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background-color: $pale-cornflower-blue;
+}

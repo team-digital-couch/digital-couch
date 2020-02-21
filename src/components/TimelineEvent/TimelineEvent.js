@@ -37,9 +37,9 @@ export class TimelineEvent extends Component {
                         <div className='event-delete-container'>
                             {this.props.selectedClient ? null : <span className='event-delete-button' onClick={() => this.delete(v.id)}>X</span>}
                         </div>
-                        <span>Date: {v.isApproximate ? 'Approximately ' : ''}{v.time}</span>
+                        <span id='event-date'>Date: {v.isApproximate ? 'Approximately ' : ''}{v.time}</span>
                         <span className='event-title'>Title: {v.title}</span>
-                        <span>What happened:</span>
+                        <span id='what-happened'>What happened:</span>
                         <p className='event-content'>{v.content}</p>
                         {/* <button>Edit</button> */}
                         {this.props.selectedClient ? null : <button>Delete</button>}

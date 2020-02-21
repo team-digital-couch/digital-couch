@@ -1,4 +1,10 @@
 $paragraph-font: 'Open Sans';
+@mixin buttons() {
+    padding: 7px 15px;
+    border-radius: 20px;
+    background-color: $mossy-green;
+    color: black;
+  }
 
 #whole-page{
     // margin-top: 50px;
@@ -6,7 +12,7 @@ $paragraph-font: 'Open Sans';
     width: 100%;
     display: flex;
     align-items: center;
-    // justify-content: center;
+    justify-content: center;
     position: relative;
 
     // .search-button {
@@ -23,6 +29,7 @@ $paragraph-font: 'Open Sans';
     }
     // font-family: $paragraph-font;
 }
+
 
 #user-pic{
     height: 200px;

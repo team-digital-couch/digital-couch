@@ -49,7 +49,7 @@ export class Timeline extends Component {
         const selected = this.props.timelines.reduce((t, v) => v.id == this.state.selection ? v : t, {})
 
         return (
-            <div>
+            <div id='timeline-page'>
                 <div>
                     <label htmlFor='timelineSelector'>Timeline:</label>
                     <select name='selection' value={this.state.selection} onChange={this.handleChange}>

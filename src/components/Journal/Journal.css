@@ -43,4 +43,11 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+
+#delete-button {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: #b0cce8;
+}
 /*# sourceMappingURL=Journal.css.map */

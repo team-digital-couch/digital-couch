@@ -39,16 +39,19 @@ export class ProviderNotes extends React.Component{
     render(){
         // console.log(this.props.selectedClient)
         return(
-            <div>
-                <section className='page-title'>Provider Notes</section>
+            <div className='provider-notes-page'>
+                <h1 className='page-title'>Provider Notes</h1>
+                <br/>
                 <h1 className='provider-notes-subtitle'>{this.props.username}'s Notes for {this.props.client_name}</h1>
-                <textarea name='content' placeholder='Add a new Note' onChange={this.inputChange}></textarea>
+                <textarea id='note-input' name='content' placeholder='Add a new Note' onChange={this.inputChange}></textarea>
                 <button onClick={this.addProviderNotes}>Add</button>
+                <br/>
                 <div id='all-notes'>{this.props.providerNotes.map(notes => {
                     return(
                         <div className='note-container' key={notes.id}>
-                            <button onClick={() => this.deleteProviderNotes(notes.id)}>X</button>
                             <section className='note-content' >{notes.content}</section>
+                            <button id='delete-note' onClick={() => this.deleteProviderNotes(notes.id)}>X</button>
+                            <br/>
                         </div>
                     )
                 })}</div>
