@@ -67,7 +67,9 @@
   background-color: #fffdea;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
-  height: 75px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 90px;
   width: 75px;
   margin-top: 15px;
   z-index: 3;
