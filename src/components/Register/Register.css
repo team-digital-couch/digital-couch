@@ -79,4 +79,8 @@
   margin-bottom: 85px;
   margin-left: 50px;
 }
+
+.invalid {
+  border-color: red !important;
+}
 /*# sourceMappingURL=Register.css.map */
